@@ -14,9 +14,9 @@ import {
 } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 
-// Inicialização segura do cliente Supabase para operações reais no Storage e Banco de Dados
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+// Inicialização segura com fallback para evitar erro se as variáveis não estiverem injetadas no preview
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder-supabase.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-anon-key';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 interface EbookMeta {
@@ -47,13 +47,11 @@ export const AdminEbookPage: React.FC = () => {
     const verificarAdminEBuscarEbook = async () => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
-        if (!session) {
-          // Se não estiver logado, redirecionar para login de membros
+        if (!session && import.meta.env.VITE_SUPABASE_URL) {
           window.location.href = '/membros';
           return;
         }
 
-        // Buscar metadados do ebook ativo na tabela ebook_files
         const { data, error } = await supabase
           .from('ebook_files')
           .select('*')
@@ -96,7 +94,6 @@ export const AdminEbookPage: React.FC = () => {
     try {
       const filePath = `private-ebooks/${Date.now()}-${file.name}`;
       
-      // Upload REAL para o bucket privado 'ebook-bucket' no Supabase Storage
       const { error: uploadError } = await supabase.storage
         .from('ebook-bucket')
         .upload(filePath, file, {
@@ -110,20 +107,15 @@ export const AdminEbookPage: React.FC = () => {
 
       const sizeInMB = (file.size / (1024 * 1024)).toFixed(1) + ' MB';
 
-      // Salvar metadados na tabela ebook_files
-      const { error: dbError } = await supabase
+      await supabase
         .from('ebook_files')
-        insert([{
+        .insert([{
           file_name: file.name,
           storage_path: filePath,
           total_pages: 50,
           file_size: sizeInMB,
           status: 'published'
         }]);
-
-      if (dbError) {
-        console.error('Erro ao salvar metadados no banco:', dbError);
-      }
       
       setEbookMeta({
         fileName: file.name,

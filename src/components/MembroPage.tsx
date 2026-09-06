@@ -13,8 +13,8 @@ import {
 } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder-supabase.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-anon-key';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 interface AcessoData {
@@ -38,12 +38,10 @@ export const MembroPage: React.FC = () => {
     const verificarSessaoOuToken = async () => {
       setLoading(true);
       try {
-        // Verificar sessão ativa do Supabase Auth
         const { data: { session } } = await supabase.auth.getSession();
         
         let userEmail = session?.user?.email;
 
-        // Se não houver sessão ativa, verificar parâmetro na URL (?email=... ou ?token=...)
         const searchParams = new URLSearchParams(window.location.search);
         const urlEmail = searchParams.get('email');
         const token = searchParams.get('token');
@@ -51,7 +49,6 @@ export const MembroPage: React.FC = () => {
         if (urlEmail) {
           userEmail = urlEmail;
         } else if (token) {
-          // Consultar token na tabela ebook_access
           const { data: accessByToken, error: tokenErr } = await supabase
             .from('ebook_access')
             .select('*')
@@ -69,7 +66,6 @@ export const MembroPage: React.FC = () => {
           return;
         }
 
-        // Consulta REAL na tabela ebook_access do Supabase
         const { data: accessData, error: accessError } = await supabase
           .from('ebook_access')
           .select('*')
@@ -84,7 +80,6 @@ export const MembroPage: React.FC = () => {
           return;
         }
 
-        // Buscar progresso de leitura real
         const { data: progressData } = await supabase
           .from('ebook_reading_progress')
           .select('current_page')
@@ -173,7 +168,6 @@ export const MembroPage: React.FC = () => {
     );
   }
 
-  // Se não estiver autenticado ou sem acesso aprovado
   if (!acesso || !acesso.valido) {
     return (
       <div className="min-h-screen bg-warm-50 flex flex-col items-center justify-center p-6">

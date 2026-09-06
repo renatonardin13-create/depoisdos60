@@ -15,8 +15,8 @@ import { createClient } from '@supabase/supabase-js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js`;
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder-supabase.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-anon-key';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 interface PDFViewerProps {
@@ -45,13 +45,11 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Carregar PDF real do Supabase Storage
   useEffect(() => {
     let isMounted = true;
     const carregarPdfDoSupabase = async () => {
       setLoading(true);
       try {
-        // Obter URL assinada ou pública protegida do bucket privado
         const { data: fileRecord } = await supabase
           .from('ebook_files')
           .select('storage_path')
@@ -59,12 +57,12 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
           .limit(1)
           .single();
 
-        let pdfSource = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf'; // Fallback se tabela vazia
+        let pdfSource = 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf';
         
         if (fileRecord?.storage_path) {
           const { data: signedUrlData } = await supabase.storage
             .from('ebook-bucket')
-            .createSignedUrl(fileRecord.storage_path, 3600); // URL assinada válida por 1 hora
+            .createSignedUrl(fileRecord.storage_path, 3600);
 
           if (signedUrlData?.signedUrl) {
             pdfSource = signedUrlData.signedUrl;
@@ -93,7 +91,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
     };
   }, []);
 
-  // Salvar progresso de leitura real no Supabase com debounce
   useEffect(() => {
     if (numPages === 0) return;
 
@@ -119,7 +116,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
     return () => clearTimeout(timer);
   }, [currentPage, numPages]);
 
-  // Renderizar páginas no canvas
   useEffect(() => {
     if (!pdfDoc) return;
 
@@ -146,7 +142,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
     if (isMobile || currentPage === 1) {
       renderPageToCanvas(currentPage, canvasSingleRef.current);
     } else {
-      // Desktop: Livro aberto (Página esquerda e direita)
       const leftPage = currentPage % 2 === 0 ? currentPage : currentPage - 1;
       const rightPage = leftPage + 1;
 
@@ -201,7 +196,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-warm-950 text-warm-100 flex flex-col select-none overflow-hidden">
-      {/* Top Bar */}
       <header className="h-14 bg-warm-900 border-b border-warm-800 flex items-center justify-between px-4 sm:px-8 z-20">
         <button
           onClick={handleVoltarMembros}
@@ -240,7 +234,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
         </div>
       </header>
 
-      {/* Main Flipbook Stage */}
       <main className="flex-1 flex items-center justify-center p-4 overflow-auto relative">
         {erro && (
           <div className="absolute top-6 bg-red-900/90 text-red-100 px-4 py-3 rounded-xl border border-red-700 text-sm flex items-center gap-2">
@@ -250,12 +243,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
         )}
 
         {isMobile || currentPage === 1 ? (
-          // Visualização Mobile ou Capa Individual
           <div className="bg-white p-2 rounded-xl shadow-2xl max-w-full">
             <canvas ref={canvasSingleRef} className="max-h-[75vh] w-auto object-contain rounded-lg shadow-sm" />
           </div>
         ) : (
-          // Visualização Desktop: Livro Aberto (2 páginas lado a lado)
           <div className="flex bg-warm-900 p-4 rounded-2xl shadow-2xl border border-warm-800 gap-2 max-w-full">
             <div className="bg-white p-2 rounded-xl shadow-inner">
               <canvas ref={canvasLeftRef} className="max-h-[72vh] w-auto object-contain" />
@@ -267,7 +258,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
         )}
       </main>
 
-      {/* Bottom Controls Bar */}
       <footer className="h-16 bg-warm-900 border-t border-warm-800 flex items-center justify-between px-6 sm:px-12 z-20">
         <button
           onClick={handlePrev}
