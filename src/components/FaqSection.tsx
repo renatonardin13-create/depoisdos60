@@ -73,7 +73,7 @@ export const FaqSection: React.FC = () => {
         {/* Reassurance Footer */}
         <div className="mt-10 text-center">
           <p className="text-xs sm:text-sm text-warm-500">
-            Ainda ficou com alguma dúvida sobre o formato digital ou o acesso? O envio do PDF é automático logo após o pagamento.
+            Ainda ficou com alguma dúvida sobre o formato digital ou o acesso? O acesso à Área de Membros é liberado imediatamente após a confirmação do pagamento.
           </p>
         </div>
 

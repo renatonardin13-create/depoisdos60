@@ -127,7 +127,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCheckout, onExpl
               <div className="flex flex-wrap items-center gap-y-2.5 gap-x-5 text-xs sm:text-sm text-emerald-200/90 pt-1">
                 <div className="flex items-center gap-1.5 text-white font-bold whitespace-nowrap">
                   <span className="text-lg text-amber-300 font-black">R$ 37,00</span>
-                  <span className="text-emerald-300 font-normal">à vista ou {product.installments}</span>
+                  <span className="text-emerald-300 font-normal">à vista</span>
                 </div>
                 <div className="flex items-center gap-1.5 whitespace-nowrap">
                   <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -136,6 +136,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCheckout, onExpl
                 <div className="flex items-center gap-1.5 whitespace-nowrap">
                   <Clock className="w-4 h-4 text-amber-300 shrink-0" />
                   <span>Acesso Imediato à Área de Membros</span>
+                </div>
+                <div className="w-full text-[11px] sm:text-xs text-emerald-200/90 pt-0.5">
+                  💡 <strong className="text-amber-300">Lembrete:</strong> Todo o valor investido volta para você caso não goste (<em>Ex:</em> R$ 37,00 100% estornados em até 7 dias).
                 </div>
               </div>
 

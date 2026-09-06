@@ -202,10 +202,10 @@ export const ChaptersSection: React.FC<ChaptersSectionProps> = ({ onOpenCheckout
               <span className="text-xs uppercase font-bold tracking-wider text-brand-300 bg-brand-900 px-2.5 py-0.5 rounded-full whitespace-nowrap">
                 Acesso Vitalício
               </span>
-              <span className="text-xs text-brand-200">128 páginas • Formato PDF</span>
+              <span className="text-xs text-brand-200">128 páginas • Acesso na Área de Membros</span>
             </div>
             <h3 className="font-display font-bold text-xl sm:text-2xl text-white">
-              Todos os 8 capítulos inclusos no mesmo arquivo digital
+              Todos os 8 capítulos disponíveis na sua Área de Membros
             </h3>
             <p className="text-xs sm:text-sm text-brand-200/90 max-w-2xl">
               Investimento único de R$ 37,00. Acesse o conteúdo completo online pela Área de Membros.

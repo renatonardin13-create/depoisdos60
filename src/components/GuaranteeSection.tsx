@@ -38,6 +38,17 @@ export const GuaranteeSection: React.FC = () => {
                 {guarantee.text}
               </p>
 
+              {/* Lembrete de Risco Zero com Exemplo Prático */}
+              <div className="bg-amber-400/10 border border-amber-400/35 rounded-2xl p-4 text-xs sm:text-sm text-amber-100 space-y-1.5 backdrop-blur-xs">
+                <div className="flex items-center gap-2 font-bold text-amber-300">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shrink-0"></span>
+                  <span>Lembrete Importante: Todo o valor investido volta para você</span>
+                </div>
+                <p className="leading-relaxed text-emerald-100/95">
+                  <strong>Exemplo prático:</strong> Você adquire o guia hoje por <strong>R$ 37,00</strong> e acessa a Área de Membros com sua família. Se em até 7 dias você sentir que o conteúdo não valeu a pena, basta pedir o cancelamento: <strong>100% do valor da compra (R$ 37,00) volta para sua conta</strong>, de forma rápida e sem qualquer desconto.
+                </p>
+              </div>
+
               <div className="pt-2 flex flex-wrap items-center gap-y-2 gap-x-4 text-xs font-semibold text-warm-200">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />

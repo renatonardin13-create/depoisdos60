@@ -129,7 +129,7 @@ export const ProductBundleMockup: React.FC<ProductBundleMockupProps> = ({ onOpen
 
             {/* Tablet Footer */}
             <div className="bg-warm-200/80 px-2 py-1 text-[8px] text-warm-600 flex justify-between font-semibold">
-              <span>Depois dos 60 • PDF</span>
+              <span>Depois dos 60 • Área de Membros</span>
               <span>100% Legível</span>
             </div>
           </div>

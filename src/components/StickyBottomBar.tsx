@@ -75,7 +75,7 @@ export const StickyBottomBar: React.FC<StickyBottomBarProps> = ({ onOpenCheckout
               </span>
             </div>
             <span className="text-[11px] text-warm-500 hidden sm:block whitespace-nowrap">
-              à vista ou {product.installments}
+              pagamento único à vista
             </span>
           </div>
 

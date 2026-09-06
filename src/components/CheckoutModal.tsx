@@ -226,7 +226,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
             {/* Order Summary Box */}
             <div className="bg-[#FAF8F4] p-4 rounded-2xl border border-warm-200 space-y-2 text-left">
               <div className="flex items-center justify-between text-sm font-bold text-warm-950">
-                <span className="truncate mr-2">Depois dos 60: 50 Cuidados (Ebook PDF)</span>
+                <span className="truncate mr-2">Depois dos 60: 50 Cuidados (Área de Membros)</span>
                 <span className="text-emerald-900 whitespace-nowrap font-display text-base font-extrabold">R$ 37,00</span>
               </div>
               <div className="flex items-center justify-between text-xs text-warm-600 border-t border-warm-200/80 pt-2">
@@ -247,10 +247,10 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
               </div>
               <div>
                 <h4 className="text-[13px] font-bold text-amber-950 leading-tight flex items-center gap-1.5">
-                  Selo de Satisfação Garantida
+                  Selo de Satisfação Garantida (Risco Zero)
                 </h4>
-                <p className="text-[11px] text-amber-800/90 leading-normal mt-0.5">
-                  Sua compra está 100% protegida. Experimente o conteúdo e o app por 7 dias. Se não ficar satisfeito, devolvemos seu dinheiro sem burocracia.
+                <p className="text-[11px] text-amber-900/90 leading-normal mt-0.5">
+                  <strong>Lembrete:</strong> O valor investido volta integralmente para você. <em>Exemplo:</em> você investe R$ 37,00 hoje e, se dentro de 7 dias não amar o guia, 100% do valor da compra volta para você sem burocracia.
                 </p>
               </div>
             </div>

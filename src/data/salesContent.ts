@@ -4,12 +4,12 @@ export const salesContent = {
   product: {
     title: 'Depois dos 60: 50 Cuidados que Todo Idoso e Sua Família Precisam Conhecer',
     subtitle: 'Um guia prático para melhorar a rotina, a segurança, a autonomia e a qualidade de vida na terceira idade',
-    format: 'Ebook Digital (PDF de Alta Definição)',
+    format: 'Ebook Digital (Acesso Online na Área de Membros)',
     pagesCount: 128,
     totalTips: 50,
     chaptersCount: 8,
     price: 37.00,
-    installments: '4x de R$ 9,90',
+    installments: '',
     originalPriceRef: 'Preço único sem pegadinhas',
   },
   
@@ -312,12 +312,12 @@ export const salesContent = {
     {
       id: 'serve-com-cuidador',
       question: 'Serve para famílias que já contam com cuidador ou que moram longe?',
-      answer: 'Sim, é especialmente útil nestes casos! O ebook funciona como um manual de alinhamento para toda a rede de apoio. Se você mora longe, pode compartilhar o arquivo com o cuidador ou com quem visita seus pais para que todos sigam os mesmos critérios de segurança, horários e rotinas.',
+      answer: 'Sim, é especialmente útil nestes casos! O ebook funciona como um manual de alinhamento para toda a rede de apoio. Se você mora longe, pode compartilhar o acesso da Área de Membros com o cuidador ou com quem visita seus pais para que todos sigam os mesmos critérios de segurança, horários e rotinas.',
     },
     {
       id: 'recebimento-ebook',
       question: 'Como e quando recebo o ebook após o pagamento?',
-      answer: 'Após a confirmação do pagamento, você receberá as instruções de acesso à Área de Membros, onde poderá ler o ebook completo online.',
+      answer: 'O acesso a este ebook é 100% via Área de Membros exclusiva. Assim que o pagamento for aprovado, você recebe no seu e-mail os dados de login para entrar na plataforma e ler todo o conteúdo online pelo celular, tablet ou computador de onde estiver.',
     },
     {
       id: 'garantia-devolucao',
@@ -327,12 +327,12 @@ export const salesContent = {
     {
       id: 'app-obrigatorio',
       question: 'O uso do aplicativo web Viva+60 é obrigatório para aproveitar o livro?',
-      answer: 'Não! O ebook “Depois dos 60” é uma obra completa, rica e totalmente independente. O aplicativo web Viva+60 com 7 dias grátis (com planos mensal de R$ 29,90 no 1º mês e depois R$ 47,90/mês, ou plano anual por R$ 97,00/ano) é um bônus adicional para quem desejar lembretes digitais automáticos no celular ou computador, sem ocupar memória. Você pode aplicar todos os 50 cuidados perfeitamente usando apenas o livro em PDF.',
+      answer: 'Não! O ebook “Depois dos 60” é uma obra completa, rica e totalmente independente. O aplicativo web Viva+60 com 7 dias grátis (com planos mensal de R$ 29,90 no 1º mês e depois R$ 47,90/mês, ou plano anual por R$ 97,00/ano) é um bônus adicional para quem desejar lembretes digitais automáticos no celular ou computador, sem ocupar memória. Você pode aplicar todos os 50 cuidados perfeitamente usando o livro digital na Área de Membros.',
     },
     {
       id: 'pagamento-seguro',
       question: 'Quais são as formas de pagamento aceitas?',
-      answer: 'Você pode pagar via PIX (com liberação instantânea) ou no Cartão de Crédito em até 4x de R$ 9,90. O processo é intermediado por uma plataforma de pagamentos criptografada e segura, que protege todos os seus dados.',
+      answer: 'Você pode pagar via PIX (com liberação instantânea) ou no Cartão de Crédito à vista pelo valor promocional de R$ 37,00. O processo é intermediado por uma plataforma de pagamentos criptografada e segura, que protege todos os seus dados.',
     },
   ],
 

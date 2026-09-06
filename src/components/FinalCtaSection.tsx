@@ -75,7 +75,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onOpenCheckout
                   </span>
                 </div>
                 <span className="text-xs font-semibold text-warm-600">
-                  ou {product.installments} no cartão
+                  pagamento único à vista
                 </span>
               </div>
             </div>
@@ -99,6 +99,20 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onOpenCheckout
 
           {/* Purchase Button CTA */}
           <div className="space-y-4 pt-2">
+            
+            {/* Lembrete de Risco Zero */}
+            <div className="bg-emerald-50/90 border border-emerald-200 rounded-2xl p-3.5 text-left text-xs text-emerald-950 flex items-start gap-2.5 shadow-2xs">
+              <ShieldCheck className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
+              <div className="space-y-0.5">
+                <span className="font-extrabold text-emerald-900 block text-xs sm:text-sm">
+                  💡 Lembrete Importante: Todo o valor investido volta para você
+                </span>
+                <p className="text-emerald-800 text-xs leading-relaxed">
+                  <strong>Exemplo prático:</strong> Você investe <strong>R$ 37,00</strong> hoje. Se por qualquer motivo não ficar satisfeito dentro do prazo de 7 dias, <strong>100% do valor da compra volta para o seu bolso</strong>, sem taxas nem burocracia.
+                </p>
+              </div>
+            </div>
+
             <button
               id="final-cta-btn"
               type="button"
@@ -118,7 +132,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onOpenCheckout
               </div>
               <div className="flex items-center gap-1.5 font-bold text-emerald-800">
                 <CreditCard className="w-4 h-4 text-emerald-700" />
-                <span>Cartão de Crédito em até 4x</span>
+                <span>Cartão de Crédito à Vista</span>
               </div>
               <div className="flex items-center gap-1.5 font-bold text-emerald-800">
                 <Lock className="w-4 h-4 text-emerald-700" />
