@@ -18,7 +18,11 @@ import {
   Printer,
   PenLine,
   Siren,
-  Droplet
+  Droplet,
+  Users,
+  MonitorSmartphone,
+  Bell,
+  Heart
 } from 'lucide-react';
 import { Viva60AppGraphic } from './illustrations/Viva60AppGraphic';
 
@@ -323,53 +327,142 @@ export const BonusAppSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Bonus 3 */}
-          <div className="bg-white rounded-3xl p-5 border-2 border-teal-400 shadow-md relative overflow-hidden flex flex-col justify-between hover:shadow-lg transition-all ring-2 ring-teal-500/20 group">
-            <div className="absolute top-4 right-4 z-10 bg-teal-700 text-white text-[11px] font-black uppercase px-2.5 py-1 rounded-full shadow-xs">
-              7 DIAS GRÁTIS
-            </div>
-
-            <div className="space-y-3">
-              {/* Soft-lighting Authentic Visual */}
-              <div className="h-32 rounded-2xl overflow-hidden relative shadow-inner bg-warm-100">
+          {/* Bonus 3 - High Converting Visual Showcase Card (Image 1) */}
+          <div className="bg-white rounded-3xl p-4 sm:p-5 border-[3px] border-emerald-400 shadow-[0_0_24px_rgba(16,185,129,0.3)] relative overflow-hidden flex flex-col justify-between hover:shadow-[0_0_32px_rgba(16,185,129,0.45)] transition-all group">
+            
+            <div className="space-y-3.5">
+              {/* Photo Banner with Badges */}
+              <div className="h-44 sm:h-48 rounded-2xl overflow-hidden relative shadow-md bg-stone-100">
                 <img 
-                  src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=500&q=80" 
+                  src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=700&q=80" 
                   alt="Idosa e filha conectadas com afeto e tecnologia web intuitiva em luz ambiente serena"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex items-end p-2.5">
-                  <span className="text-white text-xs font-bold flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    100% Web • Direto no Navegador
-                  </span>
+
+                {/* Styled Laptop & Smartphone Web App Mockup Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/35 to-black/10 flex items-center justify-end p-2 sm:p-3 pointer-events-none">
+                  <div className="w-36 bg-white/95 backdrop-blur-xs rounded-lg p-2 shadow-xl border border-stone-200 transform rotate-1 hidden xs:block">
+                    <div className="flex items-center gap-1 border-b border-stone-200 pb-1 mb-1">
+                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-600 flex items-center justify-center text-[7px] text-white">✓</div>
+                      <span className="text-[7.5px] font-black text-stone-900 uppercase">Depois dos 60</span>
+                    </div>
+                    <div className="grid grid-cols-4 gap-0.5 text-[5px] text-center font-bold text-stone-700">
+                      <div className="bg-emerald-50 rounded p-0.5">🔔 Remédios</div>
+                      <div className="bg-sky-50 rounded p-0.5">💧 Água</div>
+                      <div className="bg-red-50 rounded p-0.5">➕ SOS</div>
+                      <div className="bg-teal-50 rounded p-0.5">👥 Família</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Top-Left Pill: BÔNUS #3 */}
+                <div className="absolute top-2.5 left-2.5 z-10 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-800 text-white font-extrabold text-xs sm:text-[13px] px-3.5 py-1.5 rounded-full border border-emerald-400/60 shadow-lg flex items-center gap-1.5">
+                  <Gift className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
+                  <span>BÔNUS #3</span>
+                </div>
+
+                {/* Top-Right Pill: 7 DIAS GRÁTIS */}
+                <div className="absolute top-2.5 right-2.5 z-10 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white text-[11px] sm:text-xs font-black uppercase px-3.5 py-1 rounded-full shadow-lg border border-emerald-300/40 tracking-wider">
+                  7 DIAS GRÁTIS
+                </div>
+
+                {/* Bottom Overlay with 100% Web Tag and Handwritten Quote */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex items-end justify-between p-2.5 sm:p-3 pointer-events-none">
+                  <div className="flex items-center gap-1.5 bg-emerald-950/85 backdrop-blur-xs text-white text-[11px] sm:text-xs font-bold px-2.5 py-1 rounded-lg border border-emerald-500/40 shadow-xs">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                    <span>100% Web • Direto no Navegador</span>
+                  </div>
+
+                  <div className="text-right leading-tight hidden xs:flex flex-col items-end">
+                    <span className="text-white font-serif italic text-xs sm:text-[13px] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] block leading-snug text-emerald-100">
+                      Cuidado<br />que conecta<br />sua família!
+                    </span>
+                    <Heart className="w-3.5 h-3.5 text-emerald-300 fill-transparent stroke-[2.5] mt-0.5" />
+                  </div>
                 </div>
               </div>
 
-              <div className="space-y-1">
-                <span className="text-[11px] font-extrabold text-teal-800 uppercase tracking-wider block">
+              {/* Title & Category with vertical accent bar */}
+              <div className="space-y-1.5">
+                <span className="text-[11px] sm:text-xs font-extrabold text-emerald-700 uppercase tracking-wider block">
                   BÔNUS #3 • APLICATIVO WEB EXCLUSIVO
                 </span>
-                <h3 className="font-display font-bold text-lg text-warm-950 leading-snug">
-                  7 Dias Grátis no App Web Viva+60
-                </h3>
-                <p className="text-xs sm:text-sm text-warm-600 leading-relaxed">
+                
+                <div className="flex items-start gap-2.5">
+                  <div className="w-1.5 h-11 bg-emerald-500 rounded-full shrink-0 mt-1"></div>
+                  <h3 className="font-display font-extrabold text-base sm:text-lg text-stone-900 leading-snug">
+                    7 Dias Grátis no App Web Viva+60
+                  </h3>
+                </div>
+
+                <p className="text-xs sm:text-[13px] text-stone-600 leading-relaxed pl-4">
                   Acesso web imediato pelo celular ou computador sem instalar nada e sem ocupar memória. Lembretes sonoros de remédios, água diária e SOS família.
                 </p>
               </div>
+
+              {/* 4 Feature Badges (matching Image 1) */}
+              <div className="grid grid-cols-2 gap-1.5 sm:gap-2 pt-1">
+                <div className="bg-emerald-50/70 border border-emerald-100/90 rounded-xl p-2 flex flex-col items-center text-center gap-1">
+                  <div className="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-xs">
+                    <Bell className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-stone-800 leading-tight">
+                    Lembretes de medicamentos
+                  </span>
+                </div>
+
+                <div className="bg-emerald-50/70 border border-emerald-100/90 rounded-xl p-2 flex flex-col items-center text-center gap-1">
+                  <div className="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-xs">
+                    <Droplet className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-stone-800 leading-tight">
+                    Controle de água diária
+                  </span>
+                </div>
+
+                <div className="bg-emerald-50/70 border border-emerald-100/90 rounded-xl p-2 flex flex-col items-center text-center gap-1">
+                  <div className="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-xs">
+                    <Users className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-stone-800 leading-tight">
+                    SOS para a família
+                  </span>
+                </div>
+
+                <div className="bg-emerald-50/70 border border-emerald-100/90 rounded-xl p-2 flex flex-col items-center text-center gap-1">
+                  <div className="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-xs">
+                    <MonitorSmartphone className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-stone-800 leading-tight">
+                    Acesso pelo celular ou computador
+                  </span>
+                </div>
+              </div>
             </div>
 
-            <div className="pt-4 mt-4 border-t border-warm-100 flex items-center justify-between text-xs gap-2">
+            {/* Bottom Bar: After 7 days pricing + Glowing 7 DIAS GRÁTIS button with subtext */}
+            <div className="pt-4 mt-3 border-t border-emerald-100/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="flex flex-col text-left space-y-0.5">
-                <span className="text-[10px] text-warm-500 uppercase font-bold tracking-wider">Após os 7 dias grátis:</span>
-                <span className="text-xs text-warm-700 leading-snug">
-                  Mensal: <strong className="text-teal-900 font-bold">R$ 29,90</strong> 1º mês (depois R$ 47,90) <br className="hidden sm:inline" />
-                  ou Anual: <strong className="text-teal-900 font-bold">R$ 97,00/ano</strong>
+                <span className="text-[10.5px] text-stone-900 uppercase font-black tracking-wider">
+                  APÓS OS 7 DIAS GRÁTIS:
+                </span>
+                <span className="text-xs text-stone-700 leading-snug">
+                  Mensal: <strong className="text-stone-950 font-bold">R$ 29,90</strong> 1º mês (depois R$ 47,90) <br />
+                  ou Anual: <strong className="text-stone-950 font-bold">R$ 97,00/ano</strong>
                 </span>
               </div>
-              <span className="text-teal-800 font-extrabold text-xs sm:text-sm bg-teal-50 px-2.5 py-1.5 rounded-xl border border-teal-200 shadow-2xs whitespace-nowrap shrink-0">
-                7 DIAS GRÁTIS
-              </span>
+
+              <div className="flex flex-col items-end gap-1 shrink-0">
+                <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-emerald-800 via-emerald-700 to-emerald-800 text-white font-black text-xs sm:text-sm px-3.5 py-2 rounded-xl shadow-[0_0_18px_rgba(16,185,129,0.5)] border border-emerald-400/80 tracking-wide hover:brightness-105 cursor-pointer">
+                  <Gift className="w-4 h-4 text-amber-300 fill-amber-300 shrink-0" />
+                  <span>7 DIAS <strong className="text-amber-300 font-black">GRÁTIS</strong></span>
+                  <ChevronRight className="w-4 h-4 text-white shrink-0" />
+                </div>
+                <span className="text-[9.5px] text-stone-500 font-medium">
+                  Sem compromisso. Cancele quando quiser.
+                </span>
+              </div>
             </div>
           </div>
 
