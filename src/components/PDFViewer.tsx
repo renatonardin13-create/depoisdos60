@@ -105,12 +105,12 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
 
         const imageUrls: string[] = [];
         for (const file of listFiles) {
-          const { data: publicUrlData } = supabase.storage
+          const { data: signedUrlData } = await supabase.storage
             .from('rendered-pages-bucket')
-            .getPublicUrl(`${folderPath}/${file.name}`);
+            .createSignedUrl(`${folderPath}/${file.name}`, 3600);
           
-          if (publicUrlData?.publicUrl) {
-            imageUrls.push(publicUrlData.publicUrl);
+          if (signedUrlData?.signedUrl) {
+            imageUrls.push(signedUrlData.signedUrl);
           }
         }
 
