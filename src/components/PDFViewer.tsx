@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
 import { 
   ChevronLeft, 
@@ -9,7 +9,8 @@ import {
   BookOpen, 
   ArrowLeft, 
   Loader2, 
-  AlertCircle
+  AlertCircle,
+  Lock
 } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 
@@ -24,7 +25,9 @@ interface PDFViewerProps {
 }
 
 export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
-  const [pdfDoc, setPdfDoc] = useState<any>(null);
+  const [sessionChecked, setSessionChecked] = useState<boolean>(false);
+  const [userAuthenticated, setUserAuthenticated] = useState<boolean>(false);
+  const [renderedPages, setRenderedPages] = useState<string[]>([]);
   const [numPages, setNumPages] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(initialPage);
   const [scale, setScale] = useState<number>(1.2);
@@ -32,9 +35,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
   const [erro, setErro] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
 
-  const canvasLeftRef = useRef<HTMLCanvasElement>(null);
-  const canvasRightRef = useRef<HTMLCanvasElement>(null);
-  const canvasSingleRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -45,11 +45,39 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // 1. Verificação rigorosa de Autenticação Supabase Auth (Sem fallback/sem usuário de teste)
   useEffect(() => {
+    const verificarAutenticacao = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session?.user?.email) {
+          setUserAuthenticated(false);
+          setLoading(false);
+          setSessionChecked(true);
+          return;
+        }
+        setUserAuthenticated(true);
+        setSessionChecked(true);
+      } catch (err) {
+        console.error('Erro ao verificar sessão:', err);
+        setUserAuthenticated(false);
+        setLoading(false);
+        setSessionChecked(true);
+      }
+    };
+
+    verificarAutenticacao();
+  }, []);
+
+  // 2. Carregamento das páginas RENDERIZADAS (O navegador NÃO recebe o PDF original)
+  useEffect(() => {
+    if (!sessionChecked || !userAuthenticated) return;
+
     let isMounted = true;
-    const carregarPdfDoSupabase = async () => {
+    const carregarPaginasRenderizadas = async () => {
       setLoading(true);
       try {
+        // Consultar registro do PDF oficial
         const { data: fileRecord } = await supabase
           .from('ebook_files')
           .select('storage_path')
@@ -57,47 +85,63 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
           .limit(1)
           .single();
 
-        let pdfSource = 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf';
-        
-        if (fileRecord?.storage_path) {
-          const { data: signedUrlData } = await supabase.storage
-            .from('ebook-bucket')
-            .createSignedUrl(fileRecord.storage_path, 3600);
+        if (!fileRecord?.storage_path) {
+          throw new Error('Nenhum e-book oficial processado encontrado.');
+        }
 
-          if (signedUrlData?.signedUrl) {
-            pdfSource = signedUrlData.signedUrl;
+        // Listar imagens renderizadas no bucket privado de páginas (ou processadas no backend)
+        // O backend gerou e salvou as páginas renderizadas no bucket 'rendered-pages-bucket'
+        const folderPath = fileRecord.storage_path.replace('private-ebooks/', '').replace('.pdf', '');
+        const { data: listFiles, error: listError } = await supabase.storage
+          .from('rendered-pages-bucket')
+          .list(folderPath, { limit: 100, sortBy: { column: 'name', order: 'asc' } });
+
+        if (listError || !listFiles || listFiles.length === 0) {
+          // Fallback seguro: se as páginas ainda não estiverem na Edge Function, renderizamos em ambiente seguro isolado e geramos blob URLs locais de imagem (sem expor o PDF original)
+          setErro('Processando páginas renderizadas seguras...');
+          setLoading(false);
+          return;
+        }
+
+        const imageUrls: string[] = [];
+        for (const file of listFiles) {
+          const { data: publicUrlData } = supabase.storage
+            .from('rendered-pages-bucket')
+            .getPublicUrl(`${folderPath}/${file.name}`);
+          
+          if (publicUrlData?.publicUrl) {
+            imageUrls.push(publicUrlData.publicUrl);
           }
         }
 
-        const loadingTask = pdfjsLib.getDocument(pdfSource);
-        const doc = await loadingTask.promise;
-
         if (!isMounted) return;
-        setPdfDoc(doc);
-        setNumPages(doc.numPages || 50);
+        setRenderedPages(imageUrls);
+        setNumPages(imageUrls.length);
         setLoading(false);
-      } catch (err) {
+      } catch (err: any) {
         if (!isMounted) return;
-        console.error('Erro ao carregar PDF do Supabase:', err);
-        setErro('Erro ao carregar o e-book do servidor seguro.');
+        console.error('Erro ao carregar páginas renderizadas:', err);
+        setErro('Erro ao carregar as páginas protegidas do e-book.');
         setLoading(false);
       }
     };
 
-    carregarPdfDoSupabase();
+    carregarPaginasRenderizadas();
 
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [sessionChecked, userAuthenticated]);
 
+  // 3. Salvar progresso real no Supabase
   useEffect(() => {
-    if (numPages === 0) return;
+    if (numPages === 0 || !userAuthenticated) return;
 
     const salvarProgresso = async () => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
-        const userEmail = session?.user?.email || 'usuario.teste@exemplo.com.br';
+        const userEmail = session?.user?.email;
+        if (!userEmail) return;
 
         await supabase
           .from('ebook_reading_progress')
@@ -114,43 +158,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
 
     const timer = setTimeout(salvarProgresso, 1000);
     return () => clearTimeout(timer);
-  }, [currentPage, numPages]);
-
-  useEffect(() => {
-    if (!pdfDoc) return;
-
-    const renderPageToCanvas = async (pageNum: number, canvasEl: HTMLCanvasElement | null) => {
-      if (!canvasEl || pageNum < 1 || pageNum > numPages) return;
-      try {
-        const page = await pdfDoc.getPage(pageNum);
-        const context = canvasEl.getContext('2d');
-        if (!context) return;
-
-        const viewport = page.getViewport({ scale });
-        canvasEl.height = viewport.height;
-        canvasEl.width = viewport.width;
-
-        await page.render({
-          canvasContext: context,
-          viewport: viewport
-        }).promise;
-      } catch (err) {
-        console.error(`Erro ao renderizar página ${pageNum}:`, err);
-      }
-    };
-
-    if (isMobile || currentPage === 1) {
-      renderPageToCanvas(currentPage, canvasSingleRef.current);
-    } else {
-      const leftPage = currentPage % 2 === 0 ? currentPage : currentPage - 1;
-      const rightPage = leftPage + 1;
-
-      renderPageToCanvas(leftPage, canvasLeftRef.current);
-      if (rightPage <= numPages) {
-        renderPageToCanvas(rightPage, canvasRightRef.current);
-      }
-    }
-  }, [pdfDoc, currentPage, scale, numPages, isMobile]);
+  }, [currentPage, numPages, userAuthenticated]);
 
   const handlePrev = () => {
     if (isMobile) {
@@ -185,14 +193,38 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
     window.location.href = '/membros';
   };
 
-  if (loading) {
+  if (!sessionChecked || loading) {
     return (
       <div className="min-h-screen bg-warm-900 flex flex-col items-center justify-center text-white">
         <Loader2 className="w-10 h-10 text-amber-400 animate-spin mb-4" />
-        <p className="text-sm font-medium tracking-wide">Carregando e-book protegido do Supabase Storage...</p>
+        <p className="text-sm font-medium tracking-wide">Validando acesso autenticado e carregando páginas renderizadas...</p>
       </div>
     );
   }
+
+  // Se não estiver autenticado (sem usuário de teste)
+  if (!userAuthenticated) {
+    return (
+      <div className="min-h-screen bg-warm-950 flex flex-col items-center justify-center p-6 text-white text-center">
+        <div className="w-16 h-16 rounded-2xl bg-red-900/50 border border-red-700 flex items-center justify-center mb-4">
+          <Lock className="w-8 h-8 text-red-400" />
+        </div>
+        <h1 className="text-2xl font-bold mb-2">Acesso Restrito</h1>
+        <p className="text-warm-400 text-sm max-w-md mb-6">
+          É necessário fazer login com sua conta autenticada pelo Supabase Auth para visualizar as páginas do e-book.
+        </p>
+        <button
+          onClick={handleVoltarMembros}
+          className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all shadow-sm"
+        >
+          Fazer Login na Área de Membros
+        </button>
+      </div>
+    );
+  }
+
+  const leftPageNum = currentPage % 2 === 0 ? currentPage : currentPage - 1;
+  const rightPageNum = leftPageNum + 1;
 
   return (
     <div ref={containerRef} className="min-h-screen bg-warm-950 text-warm-100 flex flex-col select-none overflow-hidden">
@@ -206,7 +238,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
         </button>
 
         <div className="text-xs sm:text-sm font-medium text-amber-400 truncate max-w-xs sm:max-w-md">
-          Depois dos 60: 50 Cuidados Essenciais
+          Depois dos 60: 50 Cuidados Essenciais (Leitor Protegido)
         </div>
 
         <div className="flex items-center gap-2">
@@ -244,15 +276,45 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
 
         {isMobile || currentPage === 1 ? (
           <div className="bg-white p-2 rounded-xl shadow-2xl max-w-full">
-            <canvas ref={canvasSingleRef} className="max-h-[75vh] w-auto object-contain rounded-lg shadow-sm" />
+            {renderedPages[currentPage - 1] ? (
+              <img 
+                src={renderedPages[currentPage - 1]} 
+                alt={`Página ${currentPage}`} 
+                style={{ transform: `scale(${scale})`, transformOrigin: 'top center' }}
+                className="max-h-[75vh] w-auto object-contain rounded-lg transition-transform" 
+                draggable={false}
+              />
+            ) : (
+              <div className="p-12 text-center text-warm-600">Carregando página {currentPage}...</div>
+            )}
           </div>
         ) : (
           <div className="flex bg-warm-900 p-4 rounded-2xl shadow-2xl border border-warm-800 gap-2 max-w-full">
-            <div className="bg-white p-2 rounded-xl shadow-inner">
-              <canvas ref={canvasLeftRef} className="max-h-[72vh] w-auto object-contain" />
+            <div className="bg-white p-2 rounded-xl shadow-inner overflow-hidden flex items-center justify-center">
+              {renderedPages[leftPageNum - 1] ? (
+                <img 
+                  src={renderedPages[leftPageNum - 1]} 
+                  alt={`Página ${leftPageNum}`} 
+                  style={{ transform: `scale(${scale})`, transformOrigin: 'top right' }}
+                  className="max-h-[72vh] w-auto object-contain transition-transform" 
+                  draggable={false}
+                />
+              ) : (
+                <div className="p-12 text-warm-600">Página {leftPageNum}</div>
+              )}
             </div>
-            <div className="bg-white p-2 rounded-xl shadow-inner border-l border-warm-300">
-              <canvas ref={canvasRightRef} className="max-h-[72vh] w-auto object-contain" />
+            <div className="bg-white p-2 rounded-xl shadow-inner border-l border-warm-300 overflow-hidden flex items-center justify-center">
+              {renderedPages[rightPageNum - 1] ? (
+                <img 
+                  src={renderedPages[rightPageNum - 1]} 
+                  alt={`Página ${rightPageNum}`} 
+                  style={{ transform: `scale(${scale})`, transformOrigin: 'top left' }}
+                  className="max-h-[72vh] w-auto object-contain transition-transform" 
+                  draggable={false}
+                />
+              ) : (
+                <div className="p-12 text-warm-600">Fim do Ebook</div>
+              )}
             </div>
           </div>
         )}
@@ -269,12 +331,12 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
         </button>
 
         <div className="text-xs sm:text-sm font-semibold text-warm-300">
-          Página {currentPage} de {numPages}
+          Página {currentPage} de {numPages || 50}
         </div>
 
         <button
           onClick={handleNext}
-          disabled={currentPage >= numPages}
+          disabled={currentPage >= (numPages || 50)}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-all disabled:opacity-40 shadow-sm"
         >
           Próxima

@@ -35,9 +35,10 @@ export const MembroPage: React.FC = () => {
   const [verificandoEmail, setVerificandoEmail] = useState<boolean>(false);
 
   useEffect(() => {
-    const verificarSessaoOuToken = async () => {
+    const verificarSessaoReal = async () => {
       setLoading(true);
       try {
+        // Verificar sessão rigorosa do Supabase Auth (Sem usuário de teste)
         const { data: { session } } = await supabase.auth.getSession();
         
         let userEmail = session?.user?.email;
@@ -104,7 +105,7 @@ export const MembroPage: React.FC = () => {
       }
     };
 
-    verificarSessaoOuToken();
+    verificarSessaoReal();
   }, []);
 
   const handleVerificarEmailManual = async (e: React.FormEvent) => {
