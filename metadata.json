@@ -1,0 +1,6 @@
+{
+  "name": "Depois dos 60 - Guia Prático de Cuidados e Prevenção",
+  "description": "Página de vendas completa e ética para o ebook 'Depois dos 60: 50 Cuidados que Todo Idoso e Sua Família Precisam Conhecer', com foco em autonomia, segurança e tranquilidade familiar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
