@@ -83,9 +83,9 @@ export const SolutionTurnSection: React.FC<SolutionTurnSectionProps> = ({ onOpen
             </div>
           </div>
 
-          {/* Right Column: Authentic Photographic Care Showcase */}
-          <div className="lg:col-span-5 flex justify-center">
-            <CarePhotographicShowcase />
+          {/* Right Column: 3D Boxset Showcase (Bonus #4: 50 Ações Práticas) */}
+          <div className="lg:col-span-5 flex justify-center items-center">
+            <CarePhotographicShowcase onOpenCheckout={onOpenCheckout} />
           </div>
 
         </div>

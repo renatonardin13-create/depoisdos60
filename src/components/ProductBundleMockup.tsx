@@ -78,14 +78,14 @@ export const ProductBundleMockup: React.FC<ProductBundleMockupProps> = ({ onOpen
         </div>
       ) : (
         <>
-          {/* Floating Badge: MAIS VENDIDO */}
-          <div className="absolute top-8 right-2 sm:right-6 z-30 flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 text-amber-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-500/30 border border-amber-200">
+          {/* Floating Badge: MAIS VENDIDO (Positioned so it doesn't obstruct the gold ribbon on the right) */}
+          <div className="absolute top-2 right-2 sm:right-4 z-30 flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 text-amber-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-500/30 border border-amber-200">
             <Sparkles className="w-3.5 h-3.5 fill-amber-700 text-amber-700" />
             <span>Mais Vendido 2026</span>
           </div>
 
-          {/* 3D Boxset + Smartphone Mockup (Matching Image 1) */}
-          <div className="relative pt-4 pb-1 px-1 flex items-center justify-center">
+          {/* 3D Boxset + Smartphone Mockup (Exact Match to Image 2) */}
+          <div className="relative pt-6 pb-1 px-1 flex items-center justify-center">
             <Boxset3DMockupGraphic onOpenCheckout={onOpenCheckout} />
           </div>
         </>
