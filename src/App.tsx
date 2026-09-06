@@ -15,6 +15,7 @@ import { FinalCtaSection } from './components/FinalCtaSection';
 import { Footer } from './components/Footer';
 import { StickyBottomBar } from './components/StickyBottomBar';
 import { CheckoutModal } from './components/CheckoutModal';
+import { ScrollToTop } from './components/ScrollToTop';
 import { CountdownProvider } from './context/CountdownContext';
 
 export default function App() {
@@ -113,6 +114,9 @@ export default function App() {
           isOpen={isCheckoutOpen}
           onClose={() => setIsCheckoutOpen(false)}
         />
+
+        {/* Botão flutuante para voltar ao topo */}
+        <ScrollToTop />
       </div>
     </CountdownProvider>
   );

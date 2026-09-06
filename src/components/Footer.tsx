@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { BookOpen, ShieldCheck, Mail, X } from 'lucide-react';
+import { Logo } from './Logo';
+import logoImage from '../assets/logo.png';
 
 export const Footer: React.FC = () => {
   const [modalContent, setModalContent] = useState<{ title: string; text: string } | null>(null);
@@ -34,19 +36,13 @@ export const Footer: React.FC = () => {
         
         {/* Top Footer: Brand & Mission */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-warm-800">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center">
-              <BookOpen className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="font-display font-bold text-lg text-white block">
-                Depois dos 60: 50 Cuidados
-              </span>
-              <span className="text-xs text-warm-400">
-                Guia prático para rotina, segurança e autonomia na terceira idade
-              </span>
-            </div>
-          </div>
+          <img 
+            src={logoImage} 
+            alt="Depois dos 60 — Guia Prático de Prevenção & Autonomia" 
+            className="w-[200px] sm:w-[240px] h-auto"
+            style={{ width: '240px', maxWidth: '100%', height: 'auto', objectFit: 'contain' }}
+          />
+
 
           <div className="flex flex-wrap items-center gap-4 text-xs text-warm-400">
             <span className="flex items-center gap-1.5 text-warm-300">

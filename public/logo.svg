@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 280" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#064E3B" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+  </defs>
+
+  <!-- Left Emblem: Sun, Leaves & Elderly Couple -->
+  <g transform="translate(15, 15)">
+    <!-- Outer Wreath Circle background glow -->
+    <circle cx="125" cy="125" r="110" fill="#ECFDF5" opacity="0.5" />
+    <circle cx="125" cy="125" r="105" fill="none" stroke="#047857" stroke-width="4" opacity="0.2" />
+    
+    <!-- Sunrays & Sun -->
+    <g transform="translate(125, 125)">
+      <!-- Rays -->
+      <line x1="0" y1="-85" x2="0" y2="-108" stroke="#F59E0B" stroke-width="5" stroke-linecap="round" />
+      <line x1="42" y1="-74" x2="58" y2="-94" stroke="#F59E0B" stroke-width="5" stroke-linecap="round" />
+      <line x1="74" y1="-42" x2="94" y2="-58" stroke="#F59E0B" stroke-width="5" stroke-linecap="round" />
+      <line x1="85" y1="0" x2="110" y2="0" stroke="#F59E0B" stroke-width="5" stroke-linecap="round" />
+      <line x1="74" y1="42" x2="94" y2="58" stroke="#F59E0B" stroke-width="5" stroke-linecap="round" />
+      <line x1="42" y1="74" x2="58" y2="94" stroke="#F59E0B" stroke-width="5" stroke-linecap="round" />
+
+      <!-- Sun Body -->
+      <circle cx="18" cy="-18" r="52" fill="url(#sunGrad)" />
+    </g>
+
+    <!-- Wreath Leaves (Left & Bottom) -->
+    <path d="M 35,125 C 28,65 70,30 125,25 C 148,23 172,30 190,42 C 135,38 70,68 58,125 C 52,155 64,200 92,222 C 68,205 40,170 35,125 Z" fill="#047857" />
+    <path d="M 92,222 C 120,242 175,240 220,210 C 185,235 120,232 92,222 Z" fill="#10B981" />
+    <path d="M 220,210 C 248,192 265,160 265,120 C 265,85 248,60 225,43 C 248,78 248,142 225,192 C 215,210 195,222 178,228 Z" fill="#065F46" />
+
+    <!-- Elderly Couple Profiles -->
+    <!-- Man Profile (Left) -->
+    <g transform="translate(75, 120)">
+      <!-- Hair -->
+      <path d="M 28,25 C 22,20 16,32 13,44 C 10,56 14,72 23,84 C 32,72 34,56 40,44 Z" fill="#9CA3AF" />
+      <!-- Face & Body -->
+      <path d="M 23,44 C 25,38 32,35 38,38 C 44,42 48,50 46,62 C 44,74 40,84 34,96 C 28,108 22,120 16,130 L 4,130 C 8,105 14,75 23,44 Z" fill="#D97706" opacity="0.95" />
+      <path d="M 23,44 C 29,50 35,62 32,85 L 10,125 C 4,112 1,88 5,65 C 9,42 17,38 23,44 Z" fill="#064E3B" />
+    </g>
+
+    <!-- Woman Profile (Right) -->
+    <g transform="translate(108, 132)">
+      <!-- Hair Bun -->
+      <circle cx="22" cy="32" r="14" fill="#E5E7EB" />
+      <path d="M 16,26 C 10,26 4,38 7,50 C 10,62 18,74 27,86 C 24,68 21,50 27,38 Z" fill="#F3F4F6" />
+      <!-- Face & Body -->
+      <path d="M 25,38 C 32,42 38,50 35,62 C 32,74 28,90 22,108 L 10,120 L 35,120 C 32,98 34,75 40,58 C 36,48 30,42 25,38 Z" fill="#B45309" opacity="0.95" />
+      <path d="M 20,56 C 25,68 28,90 25,120 L 5,120 C 9,100 14,78 18,62 Z" fill="#FFFBEB" />
+    </g>
+  </g>
+
+  <!-- Right Side: Typography & Tagline -->
+  <g transform="translate(310, 50)">
+    <!-- Small Leaf Accent Above Text -->
+    <g transform="translate(50, 0) scale(0.9)">
+      <path d="M 22,22 C 12,16 0,28 6,38 C 16,44 28,32 22,22 Z" fill="#10B981" />
+      <path d="M 38,10 C 28,4 16,16 22,26 C 32,32 44,20 38,10 Z" fill="#059669" />
+      <ellipse cx="25" cy="30" rx="3.5" ry="2.5" fill="#047857" transform="rotate(-30 25 30)" />
+    </g>
+
+    <!-- Main Title: Depois dos 60 -->
+    <text x="0" y="78" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="72" fill="#064E3B" letter-spacing="-1.5">
+      Depois dos <tspan fill="#10B981">60</tspan>
+    </text>
+
+    <!-- Subtitle: Guia Prático de Prevenção & Autonomia -->
+    <text x="3" y="118" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="600" font-size="22" fill="#374151" letter-spacing="0.5">
+      Guia Prático de Prevenção &amp; Autonomia
+    </text>
+
+    <!-- Tagline Divider & Text -->
+    <g transform="translate(3, 142)">
+      <!-- Left line -->
+      <line x1="0" y1="12" x2="80" y2="12" stroke="#B45309" stroke-width="2" />
+      <!-- Tagline Text -->
+      <text x="90" y="18" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700" font-size="12" fill="#92400E" letter-spacing="2.5">
+        MAIS SAÚDE • MAIS VIDA • SEM LIMITES
+      </text>
+      <!-- Right line -->
+      <line x1="365" y1="12" x2="445" y2="12" stroke="#B45309" stroke-width="2" />
+    </g>
+  </g>
+</svg>

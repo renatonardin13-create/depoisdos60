@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useCountdown } from '../context/CountdownContext';
+import { Logo } from './Logo';
 import { 
   X, 
   Lock, 
@@ -167,6 +168,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
           <>
             {/* Modal Header with Security Badges */}
             <div className="space-y-2 text-left pr-8">
+              <Logo size="sm" className="mb-3 pb-3 border-b border-warm-100" />
               <div className="flex flex-wrap items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-900 text-xs font-bold border border-emerald-300 shadow-2xs whitespace-nowrap">
                   <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />

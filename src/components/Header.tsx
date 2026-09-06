@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Shield, HelpCircle, Gift, Sparkles, ChevronRight, Check, Menu, X, Star } from 'lucide-react';
+import { Logo } from './Logo';
+import logoImage from '../assets/logo.png';
 
 interface HeaderProps {
   onOpenCheckout: () => void;
@@ -37,10 +39,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCheckout, fontSize, setFon
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 overflow-hidden">
             <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-brand-500/20 text-brand-300 border border-brand-500/30 whitespace-nowrap shrink-0">
-              <Check className="w-3 h-3 mr-1" /> Formato Digital PDF
+              <Check className="w-3 h-3 mr-1" /> Acesso Digital Online
             </span>
             <span className="hidden md:inline text-warm-300 truncate text-xs">
-              Envio imediato por e-mail • Leitura fácil em celular, tablet ou para imprimir
+              Acesso à Área de Membros • Leitura fácil em celular, tablet ou computador
             </span>
           </div>
 
@@ -96,39 +98,36 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCheckout, fontSize, setFon
       <header
         className={`sticky top-0 z-40 transition-all duration-200 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-warm-200/90 py-2.5 sm:py-3'
-            : 'bg-white border-b border-warm-200/80 py-3 sm:py-3.5'
+            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-warm-200/90 py-2 sm:py-2.5'
+            : 'bg-white border-b border-warm-200/80 py-2.5 sm:py-3.5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-3 md:gap-5 min-h-[80px] sm:min-h-[86px]">
           
-          {/* Brand Logo */}
-          <a href="#" className="flex items-center gap-2.5 group shrink-0">
-            <div className="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-sm group-hover:bg-brand-700 transition shrink-0">
-              <BookOpen className="w-5 h-5" />
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2">
-                <span className="font-display font-extrabold text-lg sm:text-xl text-warm-950 leading-none whitespace-nowrap">
-                  Depois dos 60
-                </span>
-                <span className="hidden sm:inline-block text-[11px] font-bold text-brand-800 bg-brand-50 px-2 py-0.5 rounded-full border border-brand-200 whitespace-nowrap">
-                  50 Cuidados
-                </span>
-              </div>
-              <span className="text-[11px] text-warm-500 font-medium leading-tight whitespace-nowrap hidden sm:block">
-                Guia Prático de Prevenção & Autonomia
-              </span>
-            </div>
-          </a>
+          {/* Brand Logo - 240px width with perfect vertical centering and full visibility */}
+          <div id="header-logo-container" className="flex items-center shrink-0">
+            <a href="#" className="flex items-center group py-1" aria-label="Depois dos 60 — Início">
+              <img 
+                src={logoImage} 
+                alt="Depois dos 60 — Guia Prático de Prevenção & Autonomia" 
+                className="w-[185px] xs:w-[210px] sm:w-[230px] md:w-[240px] h-auto cursor-pointer transition-transform duration-150 group-hover:scale-[1.01]"
+                style={{
+                  width: '240px',
+                  maxWidth: '100%',
+                  height: 'auto',
+                  objectFit: 'contain'
+                }}
+              />
+            </a>
+          </div>
 
-          {/* Desktop Navigation - Always single-line, whitespace-nowrap with smooth spacing */}
-          <nav className="hidden xl:flex items-center gap-5 2xl:gap-6 text-sm font-medium text-warm-700">
+          {/* Desktop Navigation - Single-line with balanced spacing */}
+          <nav className="hidden xl:flex items-center gap-3.5 2xl:gap-5 text-[13px] 2xl:text-sm font-medium text-warm-700">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="whitespace-nowrap hover:text-brand-700 hover:bg-brand-50/60 px-2.5 py-1.5 rounded-lg transition-colors"
+                className="whitespace-nowrap hover:text-brand-700 hover:bg-brand-50/60 px-2 2xl:px-2.5 py-1.5 rounded-lg transition-colors"
               >
                 {link.label}
               </a>
@@ -136,13 +135,14 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCheckout, fontSize, setFon
           </nav>
 
           {/* Semi-large screens (lg) compact nav */}
-          <nav className="hidden lg:flex xl:hidden items-center gap-3 text-xs font-semibold text-warm-700">
-            <a href="#dor" className="whitespace-nowrap hover:text-brand-700 px-2 py-1 rounded">O Desafio</a>
-            <a href="#solucao" className="whitespace-nowrap hover:text-brand-700 px-2 py-1 rounded">Solução</a>
-            <a href="#capitulos" className="whitespace-nowrap hover:text-brand-700 px-2 py-1 rounded">8 Capítulos</a>
-            <a href="#bonus" className="whitespace-nowrap hover:text-brand-700 px-2 py-1 rounded">Bônus</a>
-            <a href="#depoimentos" className="whitespace-nowrap hover:text-brand-700 px-2 py-1 rounded">Depoimentos</a>
-            <a href="#faq" className="whitespace-nowrap hover:text-brand-700 px-2 py-1 rounded">Dúvidas</a>
+          <nav className="hidden lg:flex xl:hidden items-center gap-2 text-xs font-semibold text-warm-700">
+            <a href="#dor" className="whitespace-nowrap hover:text-brand-700 px-1.5 py-1 rounded">O Desafio</a>
+            <a href="#solucao" className="whitespace-nowrap hover:text-brand-700 px-1.5 py-1 rounded">A Solução</a>
+            <a href="#capitulos" className="whitespace-nowrap hover:text-brand-700 px-1.5 py-1 rounded">8 Capítulos</a>
+            <a href="#para-quem" className="whitespace-nowrap hover:text-brand-700 px-1.5 py-1 rounded">Para Quem É</a>
+            <a href="#bonus" className="whitespace-nowrap hover:text-brand-700 px-1.5 py-1 rounded">Bônus App</a>
+            <a href="#depoimentos" className="whitespace-nowrap hover:text-brand-700 px-1.5 py-1 rounded">Depoimentos</a>
+            <a href="#faq" className="whitespace-nowrap hover:text-brand-700 px-1.5 py-1 rounded">Dúvidas</a>
           </nav>
 
           {/* Right Action: CTA Button + Mobile Menu Trigger */}
