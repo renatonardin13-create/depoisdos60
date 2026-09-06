@@ -1,179 +1,100 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 300" width="940" height="300">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 280" width="920" height="280">
   <defs>
-    <!-- Sun Gradient -->
-    <radialGradient id="sunGrad" cx="45%" cy="45%" r="55%">
-      <stop offset="0%" stop-color="#FFF3B0" />
-      <stop offset="35%" stop-color="#FCD34D" />
-      <stop offset="75%" stop-color="#F59E0B" />
-      <stop offset="100%" stop-color="#D97706" />
-    </radialGradient>
-
-    <!-- Outer Leaf Wreath Gradient -->
-    <linearGradient id="leafWreathGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#86EFAC" />
-      <stop offset="25%" stop-color="#22C55E" />
-      <stop offset="65%" stop-color="#15803D" />
-      <stop offset="100%" stop-color="#052E16" />
+    <!-- "60" Yellow-Lime to Deep Emerald Gradient -->
+    <linearGradient id="sixtyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E2F952" />
+      <stop offset="15%" stop-color="#B8F01D" />
+      <stop offset="35%" stop-color="#72D20A" />
+      <stop offset="65%" stop-color="#1DA336" />
+      <stop offset="90%" stop-color="#0E6822" />
+      <stop offset="100%" stop-color="#053C16" />
     </linearGradient>
 
-    <!-- Bottom Leaf Accent -->
-    <linearGradient id="leafBottomGrad" x1="0%" y1="30%" x2="100%" y2="70%">
-      <stop offset="0%" stop-color="#4ADE80" />
-      <stop offset="45%" stop-color="#16A34A" />
-      <stop offset="100%" stop-color="#14532D" />
-    </linearGradient>
-
-    <!-- 60 Gradient -->
-    <linearGradient id="grad60" x1="20%" y1="0%" x2="80%" y2="100%">
-      <stop offset="0%" stop-color="#A3E635" />
-      <stop offset="30%" stop-color="#4ADE80" />
-      <stop offset="70%" stop-color="#16A34A" />
-      <stop offset="100%" stop-color="#14532D" />
-    </linearGradient>
-
-    <!-- Sprout Leaves on 'i' -->
-    <linearGradient id="sproutGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+    <!-- Sprout Leaves Gradient -->
+    <linearGradient id="sprout1" x1="0%" y1="100%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#15803D" />
-      <stop offset="50%" stop-color="#22C55E" />
+      <stop offset="50%" stop-color="#4ADE80" />
+      <stop offset="100%" stop-color="#BEF264" />
+    </linearGradient>
+
+    <linearGradient id="sprout2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#166534" />
+      <stop offset="60%" stop-color="#22C55E" />
       <stop offset="100%" stop-color="#86EFAC" />
     </linearGradient>
 
-    <linearGradient id="sproutGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#166534" />
-      <stop offset="60%" stop-color="#16A34A" />
-      <stop offset="100%" stop-color="#4ADE80" />
+    <!-- Gold Rule Gradient -->
+    <linearGradient id="goldRule" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#B45309" />
+      <stop offset="50%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#B45309" />
     </linearGradient>
 
-    <!-- Soft Drop Shadows -->
-    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="3" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    <!-- Subtle Drop Shadow for Text Depth -->
+    <filter id="softDepth" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="1" dy="3" stdDeviation="2.5" flood-color="#022C16" flood-opacity="0.25" />
     </filter>
   </defs>
 
-  <!-- ==================== EMBLEM (LEFT) ==================== -->
-  <g transform="translate(10, 8)">
-    
-    <!-- Rising Sun & Radiant Rays -->
-    <g transform="translate(142, 140)">
-      <!-- Sun Rays -->
-      <g stroke="#F59E0B" stroke-width="5.5" stroke-linecap="round" opacity="0.95">
-        <!-- Ray 1 (pointing up-left) -->
-        <line x1="-35" y1="-85" x2="-45" y2="-112" />
-        <!-- Ray 2 (pointing up) -->
-        <line x1="0" y1="-95" x2="0" y2="-125" />
-        <!-- Ray 3 (pointing up-right 1) -->
-        <line x1="38" y1="-88" x2="52" y2="-116" />
-        <!-- Ray 4 (pointing up-right 2) -->
-        <line x1="72" y1="-65" x2="98" y2="-88" />
-        <!-- Ray 5 (pointing right-up) -->
-        <line x1="95" y1="-30" x2="128" y2="-40" />
-        <!-- Ray 6 (pointing right) -->
-        <line x1="100" y1="8" x2="132" y2="10" />
-      </g>
-
-      <!-- Golden Sun Core -->
-      <circle cx="28" cy="-22" r="58" fill="url(#sunGrad)" filter="url(#subtleGlow)" />
-      <!-- Soft Sun Highlight Ring -->
-      <circle cx="28" cy="-22" r="62" fill="none" stroke="#FDE68A" stroke-width="2" opacity="0.6" />
-    </g>
-
-    <!-- ================= COUPLE PROFILES ================= -->
-    <!-- MAN PROFILE (Left / Background) -->
-    <g transform="translate(78, 92)">
-      <!-- Silver Hair -->
-      <path d="M 32,24 C 20,24 10,34 6,48 C 2,62 5,78 12,88 C 18,74 24,65 35,60 C 44,56 54,62 60,54 C 64,48 60,34 50,26 C 44,22 38,24 32,24 Z" fill="#E5E7EB" />
-      <path d="M 22,34 C 16,42 14,56 18,68 C 24,56 32,50 42,48 C 36,38 28,34 22,34 Z" fill="#D1D5DB" />
-      <!-- Forehead, Nose, Mouth, Chin, Neck -->
-      <path d="M 48,52 C 54,54 58,60 60,66 L 68,76 L 63,80 L 66,86 C 65,90 60,92 58,96 L 62,106 C 60,112 52,116 46,118 L 44,142 L 8,142 C 10,126 14,106 20,86 C 24,72 32,58 48,52 Z" fill="#E5A982" />
-      <!-- Facial Contours & Eye Shadow -->
-      <path d="M 52,66 C 56,70 58,74 58,78 C 55,77 52,73 50,68 Z" fill="#D48C5C" opacity="0.7" />
-      <path d="M 50,88 C 56,90 58,92 56,95 C 52,95 48,92 46,90 Z" fill="#CB845B" opacity="0.6" />
-      <!-- Dark Green Shirt -->
-      <path d="M 8,142 L 44,142 C 43,156 40,172 35,188 L 0,188 C 2,170 5,154 8,142 Z" fill="#14532D" />
-      <path d="M 35,142 C 40,152 42,166 40,180 L 35,188 C 40,172 43,156 44,142 Z" fill="#052E16" opacity="0.4" />
-    </g>
-
-    <!-- WOMAN PROFILE (Right / Foreground) -->
-    <g transform="translate(132, 118)">
-      <!-- Hair Bun -->
-      <ellipse cx="20" cy="56" rx="19" ry="21" fill="#E5E7EB" />
-      <path d="M 14,42 C 6,48 6,64 12,72 C 18,65 20,52 28,46 C 24,42 18,40 14,42 Z" fill="#D1D5DB" />
-      <!-- Silver Hair Waves -->
-      <path d="M 24,38 C 16,42 14,56 18,72 C 24,82 34,88 44,92 C 40,76 36,60 48,46 C 54,40 50,34 40,32 C 34,30 28,34 24,38 Z" fill="#F3F4F6" />
-      <path d="M 32,46 C 26,52 24,66 28,78 C 34,70 38,58 46,50 C 40,46 35,46 32,46 Z" fill="#E5E7EB" />
-      <!-- Forehead, Delicate Nose, Lips, Chin, Neck -->
-      <path d="M 44,48 C 52,52 58,58 60,65 L 68,74 L 62,78 L 65,83 C 64,88 59,90 58,94 L 62,102 C 58,108 52,112 45,114 L 46,146 L 16,146 C 18,130 24,112 30,96 C 34,82 38,62 44,48 Z" fill="#EDBA97" />
-      <!-- Soft Warm Blush & Shadow -->
-      <path d="M 50,68 C 54,72 56,76 56,80 C 53,79 50,75 48,70 Z" fill="#DC986C" opacity="0.6" />
-      <path d="M 48,84 C 54,86 56,88 54,91 C 50,91 46,88 45,86 Z" fill="#D08858" opacity="0.5" />
-      <!-- Elegant Off-White / Cream Blouse -->
-      <path d="M 16,146 L 46,146 C 45,158 42,170 36,182 L 4,182 C 7,168 11,156 16,146 Z" fill="#FDFBF7" />
-      <path d="M 36,146 C 41,154 43,165 41,176 L 36,182 C 41,170 43,158 46,146 Z" fill="#E2DDD5" opacity="0.6" />
-    </g>
-
-    <!-- ================= WREATH LEAVES ================= -->
-    <!-- Major Outer Left Leaf (curves from bottom-left all the way to top-left) -->
-    <path d="M 148,22 C 82,24 28,75 16,145 C 8,195 32,246 76,274 C 52,252 32,216 32,170 C 32,108 72,56 135,36 C 152,30 166,28 178,28 C 168,24 158,22 148,22 Z" fill="url(#leafWreathGrad)" />
-    
-    <!-- Top-Left Gloss Accent on Leaf -->
-    <path d="M 148,22 C 105,25 64,55 45,95 C 32,122 28,150 28,172 C 34,128 62,72 112,46 C 128,38 144,32 162,28 C 158,25 153,23 148,22 Z" fill="#A7F3D0" opacity="0.75" />
-
-    <!-- Bottom Left Wrapping Leaf -->
-    <path d="M 76,274 C 115,296 172,298 224,272 C 178,286 122,282 85,258 C 72,248 62,236 54,222 C 58,242 66,260 76,274 Z" fill="url(#leafBottomGrad)" />
-
-    <!-- Bottom Center & Right Leaf (Tapering gracefully to the right) -->
-    <path d="M 125,268 C 175,282 232,268 274,232 C 242,254 195,262 148,252 C 132,248 118,242 108,234 C 112,248 118,260 125,268 Z" fill="#047857" />
-
-    <!-- Inner Leaf Accent below Woman -->
-    <path d="M 175,225 C 205,232 238,222 262,198 C 242,214 214,220 188,214 C 178,212 168,206 160,198 C 164,208 170,218 175,225 Z" fill="#10B981" />
-  </g>
-
-  <!-- ==================== TYPOGRAPHY (RIGHT) ==================== -->
-  <g transform="translate(305, 52)">
-
-    <!-- Sprouting Twin Leaves on the 'i' of "Depois" -->
-    <!-- Positioned precisely over the 'i' stem at approx x=188, y=56 -->
-    <g transform="translate(186, 26)">
-      <!-- Left Sprout Leaf -->
-      <path d="M 8,30 C 2,24 -2,12 2,4 C 8,-2 18,2 20,10 C 22,20 14,28 8,30 Z" fill="url(#sproutGrad1)" filter="url(#subtleGlow)" />
-      <path d="M 6,24 C 6,16 10,8 14,4" stroke="#86EFAC" stroke-width="1.2" stroke-linecap="round" fill="none" />
+  <g transform="translate(15, 15)">
+    <!-- SPROUTING LEAVES ON THE 'i' OF "Depois" -->
+    <g transform="translate(266, 24)">
+      <!-- Left Leaf -->
+      <path d="M 8,36 C 2,28 -3,14 3,4 C 11,-4 22,2 24,11 C 27,24 16,33 8,36 Z" fill="url(#sprout1)" />
+      <path d="M 6,28 C 6,18 11,10 16,5" stroke="#BBF7D0" stroke-width="1.2" stroke-linecap="round" fill="none" />
       
-      <!-- Right Sprout Leaf (larger, angled slightly right) -->
-      <path d="M 14,32 C 16,24 22,14 32,8 C 42,4 48,12 46,22 C 42,32 28,34 14,32 Z" fill="url(#sproutGrad2)" filter="url(#subtleGlow)" />
-      <path d="M 18,28 C 24,20 32,16 40,12" stroke="#BBF7D0" stroke-width="1.2" stroke-linecap="round" fill="none" />
+      <!-- Right Leaf (Larger, Angled Up-Right) -->
+      <path d="M 16,38 C 18,28 26,16 38,8 C 50,3 58,12 55,24 C 50,38 32,41 16,38 Z" fill="url(#sprout2)" />
+      <path d="M 22,32 C 28,22 38,18 48,13" stroke="#DCFCE7" stroke-width="1.2" stroke-linecap="round" fill="none" />
+      
+      <!-- Dark Olive Seed at Base -->
+      <ellipse cx="14" cy="40" rx="4.5" ry="5.5" fill="#052E16" />
     </g>
 
-    <!-- Main Title: "Depois dos 60" -->
-    <g transform="translate(0, 94)">
-      <!-- "Depois dos" in deep evergreen bold font -->
-      <text x="0" y="0" font-family="'Montserrat', 'Poppins', 'Nunito', 'Segoe UI', system-ui, -apple-system, sans-serif" font-weight="900" font-size="82" fill="#0A331E" letter-spacing="-1.5">
-        Depois dos
+    <!-- MAIN BRAND TITLE: "Depois dos 60" -->
+    <g transform="translate(0, 126)">
+      <!-- "Depois" in bold deep forest green sans-serif -->
+      <text x="0" y="0" font-family="'Montserrat', 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif" font-weight="900" font-size="138" fill="#00381C" letter-spacing="-3">
+        Depois
       </text>
 
-      <!-- "60" in vibrant 3D lime-to-emerald gradient -->
-      <text x="442" y="0" font-family="'Montserrat', 'Poppins', 'Nunito', 'Segoe UI', system-ui, -apple-system, sans-serif" font-weight="950" font-size="88" fill="url(#grad60)" letter-spacing="-1">
+      <!-- "dos" in matching bold deep forest green sans-serif -->
+      <text x="455" y="0" font-family="'Montserrat', 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif" font-weight="900" font-size="138" fill="#00381C" letter-spacing="-3">
+        dos
+      </text>
+
+      <!-- "60" in vibrant yellow-lime to emerald gradient sans-serif -->
+      <!-- Underlying shadow -->
+      <text x="682" y="3.5" font-family="'Montserrat', 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif" font-weight="900" font-size="172" fill="#052E16" letter-spacing="-4">
+        60
+      </text>
+      <!-- Main Gradient Body -->
+      <text x="678" y="0" font-family="'Montserrat', 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif" font-weight="900" font-size="172" fill="url(#sixtyGradient)" letter-spacing="-4" filter="url(#softDepth)">
+        60
+      </text>
+      <!-- Top Specular Highlight Edge -->
+      <text x="677" y="-1.5" font-family="'Montserrat', 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif" font-weight="900" font-size="172" fill="none" stroke="#F7FEE7" stroke-width="2" stroke-linejoin="round" letter-spacing="-4" opacity="0.8">
         60
       </text>
     </g>
 
-    <!-- Subtitle: "Guia Prático de Prevenção & Autonomia" -->
-    <text x="4" y="142" font-family="'Montserrat', 'Poppins', 'Nunito', 'Segoe UI', system-ui, -apple-system, sans-serif" font-weight="600" font-size="25.5" fill="#1B3327" letter-spacing="0.4">
+    <!-- SUBTITLE: "Guia Prático de Prevenção & Autonomia" -->
+    <text x="6" y="188" font-family="'Montserrat', 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif" font-weight="800" font-size="38.5" fill="#033F20" letter-spacing="-0.5">
       Guia Prático de Prevenção &amp; Autonomia
     </text>
 
-    <!-- Tagline Bar: Line - MAIS SAÚDE • MAIS VIDA • SEM LIMITES - Line -->
-    <g transform="translate(4, 172)">
+    <!-- TAGLINE BAR: Gold Line — MAIS SAÚDE • MAIS VIDA • SEM LIMITES — Gold Line -->
+    <g transform="translate(6, 222)">
       <!-- Left Golden Rule -->
-      <line x1="0" y1="12" x2="80" y2="12" stroke="#B28734" stroke-width="2.2" stroke-linecap="round" />
+      <line x1="0" y1="12" x2="110" y2="12" stroke="url(#goldRule)" stroke-width="3.5" stroke-linecap="round" />
       
       <!-- Tagline Text -->
-      <text x="92" y="18" font-family="'Montserrat', 'Poppins', 'Nunito', 'Segoe UI', system-ui, -apple-system, sans-serif" font-weight="700" font-size="13.5" fill="#9C7425" letter-spacing="2.8">
+      <text x="125" y="19" font-family="'Montserrat', 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif" font-weight="800" font-size="18.5" fill="#A16207" letter-spacing="3.2">
         MAIS SAÚDE   •   MAIS VIDA   •   SEM LIMITES
       </text>
       
       <!-- Right Golden Rule -->
-      <line x1="452" y1="12" x2="532" y2="12" stroke="#B28734" stroke-width="2.2" stroke-linecap="round" />
+      <line x1="728" y1="12" x2="838" y2="12" stroke="url(#goldRule)" stroke-width="3.5" stroke-linecap="round" />
     </g>
   </g>
 </svg>

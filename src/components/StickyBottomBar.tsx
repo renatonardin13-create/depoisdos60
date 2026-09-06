@@ -9,6 +9,7 @@ interface StickyBottomBarProps {
 
 export const StickyBottomBar: React.FC<StickyBottomBarProps> = ({ onOpenCheckout }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isNearFooter, setIsNearFooter] = useState(false);
   const { product } = salesContent;
 
   useEffect(() => {
@@ -16,16 +17,28 @@ export const StickyBottomBar: React.FC<StickyBottomBarProps> = ({ onOpenCheckout
       // Show when scrolled past hero section (> 420px)
       const scrolled = window.scrollY > 420;
       setIsVisible(scrolled);
+
+      // Check distance to bottom of page (footer area)
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const totalHeight = document.documentElement.scrollHeight;
+      // When reaching near the bottom, hide smoothly so footer links and disclaimer are never covered
+      const nearBottom = scrollPosition >= totalHeight - 200;
+      setIsNearFooter(nearBottom);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-warm-200/90 shadow-2xl p-2.5 sm:py-3 sm:px-6 transition-all animate-fadeIn">
+    <div 
+      className={`fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-warm-200/90 shadow-2xl p-2.5 sm:py-3 sm:px-6 transition-all duration-300 ${
+        isNearFooter ? 'translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100 animate-fadeIn'
+      }`}
+    >
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
         
         {/* Left summary info */}

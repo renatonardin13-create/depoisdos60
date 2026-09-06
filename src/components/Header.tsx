@@ -104,15 +104,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCheckout, fontSize, setFon
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-3 md:gap-5 min-h-[80px] sm:min-h-[86px]">
           
-          {/* Brand Logo - 240px width with perfect vertical centering and full visibility */}
+          {/* Brand Logo - clean prominent wordmark with full visibility */}
           <div id="header-logo-container" className="flex items-center shrink-0">
             <a href="#" className="flex items-center group py-1" aria-label="Depois dos 60 — Início">
               <img 
                 src={logoImage} 
                 alt="Depois dos 60 — Guia Prático de Prevenção & Autonomia" 
-                className="w-[185px] xs:w-[210px] sm:w-[230px] md:w-[240px] h-auto cursor-pointer transition-transform duration-150 group-hover:scale-[1.01]"
+                className="w-[190px] xs:w-[220px] sm:w-[240px] md:w-[260px] h-auto cursor-pointer transition-transform duration-150 group-hover:scale-[1.01]"
                 style={{
-                  width: '240px',
+                  width: '260px',
                   maxWidth: '100%',
                   height: 'auto',
                   objectFit: 'contain'

@@ -11,9 +11,9 @@ export const Logo: React.FC<LogoProps> = ({
   size = 'md' 
 }) => {
   const sizeClasses = {
-    sm: 'w-[150px] sm:w-[180px]',
-    md: 'w-[190px] sm:w-[220px]',
-    lg: 'w-[220px] sm:w-[250px]',
+    sm: 'w-[160px] sm:w-[190px]',
+    md: 'w-[200px] sm:w-[240px]',
+    lg: 'w-[240px] sm:w-[280px]',
   };
 
   return (
