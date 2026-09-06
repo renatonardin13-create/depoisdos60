@@ -38,7 +38,7 @@ export const StickyBottomBar: React.FC<StickyBottomBarProps> = ({ onOpenCheckout
               Depois dos 60: 50 Cuidados Práticos
             </span>
             <span className="text-xs text-warm-500 whitespace-nowrap">
-              Ebook PDF Completo + 7 Dias Grátis no App Viva+60
+              Ebook Completo na Área de Membros + 7 Dias Grátis no App Viva+60
             </span>
           </div>
         </div>

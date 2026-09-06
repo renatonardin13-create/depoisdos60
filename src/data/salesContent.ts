@@ -20,7 +20,7 @@ export const salesContent = {
     keyPoints: [
       '50 ações práticas divididas em 8 áreas essenciais',
       'Linguagem humana, clara e sem termos médicos complexos',
-      'Entrega imediata em PDF para ler no celular, tablet ou imprimir',
+      'Acesso imediato à Área de Membros para leitura online segura',
       'Bônus especial: 7 dias grátis do aplicativo Viva+60',
     ],
   },
@@ -292,7 +292,7 @@ export const salesContent = {
         category: 'O Que Você Recebe com o Guia “Depois dos 60”',
         items: [
           '50 cuidados testados e organizados em 8 capítulos prontos para aplicar hoje mesmo.',
-          'Orientações em PDF legível para consultar sempre que precisar no celular ou no papel.',
+          'Orientações completas na Área de Membros para consultar sempre que precisar no celular ou computador.',
           'Tranquilidade de saber exatamente como proteger a casa e organizar os remédios.',
           'Bônus de 7 dias no app Viva+60 + Garantia incondicional de devolução de 100%.',
         ],

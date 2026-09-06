@@ -68,7 +68,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email.trim()) {
-      newErrors.email = 'Por favor, informe seu e-mail para receber o ebook.';
+      newErrors.email = 'Por favor, informe seu e-mail para receber o acesso.';
     } else if (!emailRegex.test(email.trim())) {
       newErrors.email = 'Digite um e-mail válido (ex: seuemail@gmail.com).';
     }
@@ -186,7 +186,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
                 Finalizar Acesso ao Ebook Digital
               </h3>
               <p className="text-xs sm:text-sm text-warm-600">
-                Preencha seus dados para receber o arquivo PDF completo e o acesso ao bônus.
+                Preencha seus dados para receber o acesso à Área de Membros e ao bônus.
               </p>
             </div>
 
@@ -319,7 +319,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
 
                 <div>
                   <label htmlFor="input-email" className="text-xs font-bold text-warm-700 block mb-1 whitespace-nowrap">
-                    Seu Melhor E-mail (onde receberá o arquivo PDF):
+                    Seu Melhor E-mail (para acesso à Área de Membros):
                   </label>
                   <input
                     id="input-email"
@@ -344,7 +344,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
 
                 <div>
                   <label htmlFor="input-phone" className="text-xs font-bold text-warm-700 block mb-1 whitespace-nowrap">
-                    WhatsApp / Celular (para suporte e envio):
+                    WhatsApp / Celular (para suporte):
                   </label>
                   <input
                     id="input-phone"
@@ -432,7 +432,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
                 <span className="font-semibold text-warm-900">{name}</span>
               </div>
               <div className="flex justify-between py-1 border-b border-warm-200/70">
-                <span className="text-warm-500">E-mail para Envio:</span>
+                <span className="text-warm-500">E-mail de Acesso:</span>
                 <span className="font-semibold text-warm-900">{email}</span>
               </div>
               {phone && (

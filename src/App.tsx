@@ -16,36 +16,10 @@ import { Footer } from './components/Footer';
 import { StickyBottomBar } from './components/StickyBottomBar';
 import { CheckoutModal } from './components/CheckoutModal';
 import { CountdownProvider } from './context/CountdownContext';
-import { MembroPage } from './components/MembroPage';
-import { PDFViewer } from './components/PDFViewer';
-import { AdminEbookPage } from './components/AdminEbookPage';
 
 export default function App() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [fontSize, setFontSize] = useState<'normal' | 'large' | 'xlarge'>('normal');
-
-  const pathname = window.location.pathname;
-
-  // Rota do Painel Administrativo
-  if (pathname.startsWith('/admin/ebook')) {
-    return <AdminEbookPage />;
-  }
-
-  // Rota do Leitor / Flipbook Exclusivo
-  if (pathname.startsWith('/membros/ebook')) {
-    return (
-      <PDFViewer 
-        pdfUrl="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf"
-        titulo="Depois dos 60: 50 Cuidados Essenciais"
-        initialPage={1}
-      />
-    );
-  }
-
-  // Rota da Área de Membros
-  if (pathname.startsWith('/membros')) {
-    return <MembroPage />;
-  }
 
   const getFontSizeClass = () => {
     switch (fontSize) {

@@ -81,7 +81,7 @@ export const ChaptersSection: React.FC<ChaptersSectionProps> = ({ onOpenCheckout
               ✓ 50 Cuidados Práticos
             </span>
             <span className="bg-warm-100 border border-warm-200 px-3 py-1 rounded-full text-warm-800 whitespace-nowrap">
-              ✓ 128 Páginas em PDF
+              ✓ 128 Páginas de Conteúdo
             </span>
             <span className="bg-warm-100 border border-warm-200 px-3 py-1 rounded-full text-warm-800 whitespace-nowrap">
               ✓ Letra Confortável para Leitura

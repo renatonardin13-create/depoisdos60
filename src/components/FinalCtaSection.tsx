@@ -22,13 +22,13 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onOpenCheckout
   const { product } = salesContent;
 
   const includedItems = [
-    'Ebook digital completo “Depois dos 60” (128 páginas em PDF de alta qualidade)',
+    'Ebook digital completo “Depois dos 60” (128 páginas na Área de Membros)',
     '50 cuidados práticos divididos nos 8 capítulos essenciais de prevenção',
     'Checklists prontos de segurança em casa e organização de medicamentos',
     'Modelo de ficha de emergência médica para fixar na geladeira',
     'Bônus Especial: 7 dias gratuitos no aplicativo Viva+60',
     'Garantia incondicional de 7 dias com devolução de 100%',
-    'Acesso vitalício ao arquivo para consultar sempre que precisar',
+    'Acesso vitalício à Área de Membros para consultar sempre que precisar',
   ];
 
   return (
@@ -48,7 +48,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onOpenCheckout
               A tranquilidade da sua família começa com um pequeno passo de prevenção.
             </h2>
             <p className="text-base sm:text-lg text-warm-700 leading-relaxed font-normal">
-              Você não precisa esperar uma queda, um susto com remédio ou uma emergência acontecer para organizar a rotina de quem você mais ama. Garanta hoje o seu guia prático e receba o acesso no seu e-mail em menos de 2 minutos.
+              Você não precisa esperar uma queda, um susto com remédio ou uma emergência acontecer para organizar a rotina de quem você mais ama. Garanta hoje o seu guia prático e receba o acesso à Área de Membros logo após a confirmação do pagamento.
             </p>
           </div>
 

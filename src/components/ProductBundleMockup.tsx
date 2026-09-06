@@ -60,7 +60,7 @@ export const ProductBundleMockup: React.FC<ProductBundleMockupProps> = ({ onOpen
             <div className="flex items-center gap-3 text-[11px] text-emerald-200/90">
               <span className="flex items-center gap-1">
                 <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                <span>Envio Imediato</span>
+                <span>Acesso Imediato</span>
               </span>
               <span>•</span>
               <span className="flex items-center gap-1">
@@ -204,7 +204,7 @@ export const ProductBundleMockup: React.FC<ProductBundleMockupProps> = ({ onOpen
               <div className="pt-2 border-t border-emerald-700/50 flex items-center justify-between text-[8px] sm:text-[9px] text-warm-200 relative z-10">
                 <span className="font-semibold text-warm-300">128 Páginas • 8 Capítulos</span>
                 <span className="bg-amber-400 text-amber-950 font-black px-2 py-0.5 rounded text-[8px] uppercase tracking-wider">
-                  Ebook PDF
+                  Guia Digital
                 </span>
               </div>
 
