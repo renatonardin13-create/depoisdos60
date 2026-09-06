@@ -1,20 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as pdfjsLib from 'pdfjs-dist';
 import { 
   ChevronLeft, 
   ChevronRight, 
   ZoomIn, 
   ZoomOut, 
   Maximize, 
-  BookOpen, 
   ArrowLeft, 
   Loader2, 
   AlertCircle,
   Lock
 } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js`;
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder-supabase.supabase.co';
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-anon-key';
@@ -45,60 +41,92 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // 1. Verificação rigorosa de Autenticação Supabase Auth (Sem fallback/sem usuário de teste)
+  // 1. Verificar autenticação e permissão de acesso ao ebook
   useEffect(() => {
-    const verificarAutenticacao = async () => {
+    const verificarAutenticacaoEAcesso = async () => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
-        if (!session?.user?.email) {
+        let userEmail = session?.user?.email;
+
+        const searchParams = new URLSearchParams(window.location.search);
+        const urlEmail = searchParams.get('email');
+        const token = searchParams.get('token');
+
+        if (urlEmail) {
+          userEmail = urlEmail;
+        } else if (token) {
+          const { data: accessByToken } = await supabase
+            .from('ebook_access')
+            .select('email')
+            .eq('transaction_id', token)
+            .single();
+          if (accessByToken?.email) {
+            userEmail = accessByToken.email;
+          }
+        }
+
+        if (!userEmail) {
           setUserAuthenticated(false);
           setLoading(false);
           setSessionChecked(true);
           return;
         }
+
+        // Validar se possui compra ativa
+        const { data: accessData } = await supabase
+          .from('ebook_access')
+          .select('status')
+          .eq('email', userEmail)
+          .eq('status', 'active')
+          .single();
+
+        if (!accessData) {
+          setUserAuthenticated(false);
+          setLoading(false);
+          setSessionChecked(true);
+          return;
+        }
+
         setUserAuthenticated(true);
         setSessionChecked(true);
       } catch (err) {
-        console.error('Erro ao verificar sessão:', err);
+        console.error('Erro na validação de acesso:', err);
         setUserAuthenticated(false);
         setLoading(false);
         setSessionChecked(true);
       }
     };
 
-    verificarAutenticacao();
+    verificarAutenticacaoEAcesso();
   }, []);
 
-  // 2. Carregamento das páginas RENDERIZADAS (O navegador NÃO recebe o PDF original)
+  // 2. Carregar páginas renderizadas protegidas do bucket privado (rendered-pages-bucket) via URLs assinadas
   useEffect(() => {
     if (!sessionChecked || !userAuthenticated) return;
 
     let isMounted = true;
-    const carregarPaginasRenderizadas = async () => {
+    const carregarPaginasProtegidas = async () => {
       setLoading(true);
       try {
-        // Consultar registro do PDF oficial
         const { data: fileRecord } = await supabase
           .from('ebook_files')
-          .select('storage_path')
+          .select('storage_path, total_pages, status')
           .order('created_at', { ascending: false })
           .limit(1)
           .single();
 
         if (!fileRecord?.storage_path) {
-          throw new Error('Nenhum e-book oficial processado encontrado.');
+          throw new Error('Nenhum e-book processado encontrado.');
         }
 
-        // Listar imagens renderizadas no bucket privado de páginas (ou processadas no backend)
-        // O backend gerou e salvou as páginas renderizadas no bucket 'rendered-pages-bucket'
         const folderPath = fileRecord.storage_path.replace('private-ebooks/', '').replace('.pdf', '');
+
         const { data: listFiles, error: listError } = await supabase.storage
           .from('rendered-pages-bucket')
           .list(folderPath, { limit: 100, sortBy: { column: 'name', order: 'asc' } });
 
         if (listError || !listFiles || listFiles.length === 0) {
-          // Fallback seguro: se as páginas ainda não estiverem na Edge Function, renderizamos em ambiente seguro isolado e geramos blob URLs locais de imagem (sem expor o PDF original)
-          setErro('Processando páginas renderizadas seguras...');
+          setErro('Aguardando conclusão do processamento das páginas...');
           setLoading(false);
           return;
         }
@@ -108,7 +136,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
           const { data: signedUrlData } = await supabase.storage
             .from('rendered-pages-bucket')
             .createSignedUrl(`${folderPath}/${file.name}`, 3600);
-          
+
           if (signedUrlData?.signedUrl) {
             imageUrls.push(signedUrlData.signedUrl);
           }
@@ -116,24 +144,24 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
 
         if (!isMounted) return;
         setRenderedPages(imageUrls);
-        setNumPages(imageUrls.length);
+        setNumPages(imageUrls.length || fileRecord.total_pages || 50);
         setLoading(false);
       } catch (err: any) {
         if (!isMounted) return;
-        console.error('Erro ao carregar páginas renderizadas:', err);
+        console.error('Erro ao carregar páginas protegidas:', err);
         setErro('Erro ao carregar as páginas protegidas do e-book.');
         setLoading(false);
       }
     };
 
-    carregarPaginasRenderizadas();
+    carregarPaginasProtegidas();
 
     return () => {
       isMounted = false;
     };
   }, [sessionChecked, userAuthenticated]);
 
-  // 3. Salvar progresso real no Supabase
+  // 3. Salvar progresso de leitura
   useEffect(() => {
     if (numPages === 0 || !userAuthenticated) return;
 
@@ -152,7 +180,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
             updated_at: new Date().toISOString()
           }, { onConflict: 'email' });
       } catch (err) {
-        console.error('Erro ao salvar progresso real:', err);
+        console.error('Erro ao salvar progresso:', err);
       }
     };
 
@@ -174,7 +202,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
       if (currentPage < numPages) setCurrentPage(p => p + 1);
     } else {
       if (currentPage === 1) setCurrentPage(2);
-      else if (currentPage + 2 <= numPages) setCurrentPage(p => p + 2);
+      else if (currentPage + 2 <= numPages) setCurrentPage(p + 2);
       else if (currentPage + 1 <= numPages) setCurrentPage(p + 1);
     }
   };
@@ -182,7 +210,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
       containerRef.current?.requestFullscreen().catch((err) => {
-        console.error('Erro ao ativar tela cheia:', err);
+        console.error('Erro tela cheia:', err);
       });
     } else {
       document.exitFullscreen();
@@ -197,12 +225,11 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
     return (
       <div className="min-h-screen bg-warm-900 flex flex-col items-center justify-center text-white">
         <Loader2 className="w-10 h-10 text-amber-400 animate-spin mb-4" />
-        <p className="text-sm font-medium tracking-wide">Validando acesso autenticado e carregando páginas renderizadas...</p>
+        <p className="text-sm font-medium tracking-wide">Validando acesso e carregando páginas renderizadas...</p>
       </div>
     );
   }
 
-  // Se não estiver autenticado (sem usuário de teste)
   if (!userAuthenticated) {
     return (
       <div className="min-h-screen bg-warm-950 flex flex-col items-center justify-center p-6 text-white text-center">
@@ -211,13 +238,13 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
         </div>
         <h1 className="text-2xl font-bold mb-2">Acesso Restrito</h1>
         <p className="text-warm-400 text-sm max-w-md mb-6">
-          É necessário fazer login com sua conta autenticada pelo Supabase Auth para visualizar as páginas do e-book.
+          É necessário ter uma compra ativa confirmada para visualizar o e-book.
         </p>
         <button
           onClick={handleVoltarMembros}
           className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all shadow-sm"
         >
-          Fazer Login na Área de Membros
+          Voltar à Área de Membros
         </button>
       </div>
     );
@@ -331,12 +358,12 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ initialPage = 1 }) => {
         </button>
 
         <div className="text-xs sm:text-sm font-semibold text-warm-300">
-          Página {currentPage} de {numPages || 50}
+          Página {currentPage} de {numPages}
         </div>
 
         <button
           onClick={handleNext}
-          disabled={currentPage >= (numPages || 50)}
+          disabled={currentPage >= numPages}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-all disabled:opacity-40 shadow-sm"
         >
           Próxima
