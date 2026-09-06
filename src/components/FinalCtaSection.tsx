@@ -26,7 +26,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onOpenCheckout
     '50 cuidados práticos divididos nos 8 capítulos essenciais de prevenção',
     'Checklists prontos de segurança em casa e organização de medicamentos',
     'Modelo de ficha de emergência médica para fixar na geladeira',
-    'Bônus Especial: 7 dias gratuitos no aplicativo Viva+60',
+    'Bônus Especial: 7 dias grátis no app web Viva+60 (1º mês R$ 29,90)',
     'Garantia incondicional de 7 dias com devolução de 100%',
     'Acesso vitalício à Área de Membros para consultar sempre que precisar',
   ];
@@ -61,7 +61,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onOpenCheckout
                   Oferta de Acesso Digital
                 </span>
                 <h3 className="font-display font-bold text-xl text-warm-900 mt-1">
-                  Guia Digital + Bônus Viva+60
+                  Guia Digital + Bônus App Web Viva+60
                 </h3>
               </div>
 

@@ -21,7 +21,7 @@ export const salesContent = {
       '50 ações práticas divididas em 8 áreas essenciais',
       'Linguagem humana, clara e sem termos médicos complexos',
       'Acesso imediato à Área de Membros para leitura online segura',
-      'Bônus especial: 7 dias grátis do aplicativo Viva+60',
+      'Bônus especial: 7 dias grátis do app web Viva+60 (1º mês R$ 29,90)',
     ],
   },
 
@@ -249,8 +249,8 @@ export const salesContent = {
 
   bonus: {
     tag: 'Bônus Especial Incluso',
-    title: '7 Dias Gratuitos no Aplicativo Viva+60',
-    subtitle: 'O companheiro digital do seu ebook para transformar o cuidado em hábitos leves e automáticos no celular',
+    title: '7 Dias Gratuitos no Aplicativo Web Viva+60',
+    subtitle: 'O companheiro digital 100% web do seu ebook para transformar o cuidado em hábitos leves e automáticos no celular ou computador, sem ocupar memória',
     features: [
       {
         title: 'Lembretes Amigáveis de Remédios',
@@ -269,7 +269,7 @@ export const salesContent = {
         desc: 'Interface com letras grandes e botão direto para ligar aos contatos de emergência com 1 toque.',
       },
     ],
-    transparencyNote: 'Informação transparente e ética: Você receberá 7 dias de acesso gratuito ao app Viva+60 para testar sem custo inicial. O cancelamento pode ser feito livremente durante o período de teste. Caso não seja cancelado, a assinatura mensal de R$ 47,90 será iniciada automaticamente. A partir da renovação seguinte, o plano passa a ser cobrado no valor anual de R$ 97,00.',
+    transparencyNote: 'Informação transparente e ética: Você receberá 7 dias de acesso gratuito ao app web Viva+60 para testar sem qualquer custo inicial. O cancelamento pode ser feito livremente a qualquer momento durante o período de teste. Caso decida continuar com a assinatura: se escolher o plano mensal, o primeiro mês é promocional por apenas R$ 29,90 (depois R$ 47,90/mês); e se escolher o plano anual, são 7 dias grátis e depois R$ 97,00/ano.',
   },
 
   valueProof: {
@@ -326,8 +326,8 @@ export const salesContent = {
     },
     {
       id: 'app-obrigatorio',
-      question: 'O uso do aplicativo Viva+60 é obrigatório para aproveitar o livro?',
-      answer: 'Não! O ebook “Depois dos 60” é uma obra completa, rica e totalmente independente. O aplicativo Viva+60 com 7 dias grátis é um bônus adicional para quem desejar lembretes digitais automáticos no celular. Você pode aplicar todos os 50 cuidados perfeitamente usando apenas o livro em PDF.',
+      question: 'O uso do aplicativo web Viva+60 é obrigatório para aproveitar o livro?',
+      answer: 'Não! O ebook “Depois dos 60” é uma obra completa, rica e totalmente independente. O aplicativo web Viva+60 com 7 dias grátis (com planos mensal de R$ 29,90 no 1º mês e depois R$ 47,90/mês, ou plano anual por R$ 97,00/ano) é um bônus adicional para quem desejar lembretes digitais automáticos no celular ou computador, sem ocupar memória. Você pode aplicar todos os 50 cuidados perfeitamente usando apenas o livro em PDF.',
     },
     {
       id: 'pagamento-seguro',

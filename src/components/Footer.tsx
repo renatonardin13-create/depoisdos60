@@ -120,7 +120,7 @@ export const Footer: React.FC = () => {
             O ebook “Depois dos 60: 50 Cuidados que Todo Idoso e Sua Família Precisam Conhecer” é um guia de orientações práticas voltado à organização doméstica, hábitos preventivos e qualidade de vida. Este material possui caráter estritamente educativo e <strong>não substitui</strong> consultas médicas, diagnósticos clínicos, prescrições de medicamentos ou o acompanhamento individualizado de médicos, enfermeiros, fisioterapeutas ou nutricionistas.
           </p>
           <p>
-            Sobre o bônus do aplicativo Viva+60: os 7 dias de acesso gratuito são concedidos para teste sem custo inicial. O cancelamento pode ser feito livremente durante o período de teste. Caso não seja cancelado, a assinatura mensal de R$ 47,90 será iniciada automaticamente. A partir da renovação seguinte, o plano passa a ser cobrado no valor anual de R$ 97,00.
+            Sobre o bônus do aplicativo web Viva+60: os 7 dias de acesso gratuito são concedidos para teste sem custo inicial. O cancelamento pode ser feito livremente durante o período de teste. Caso decida continuar com a assinatura: se escolher o plano mensal, o primeiro mês é promocional por R$ 29,90 (depois R$ 47,90/mês); e se escolher o plano anual, são 7 dias grátis e depois R$ 97,00/ano.
           </p>
         </div>
 
@@ -262,7 +262,7 @@ export const Footer: React.FC = () => {
                     >
                       <option value="Dúvida sobre o Ebook">Dúvida sobre o Ebook Depois dos 60</option>
                       <option value="Acesso à Área de Membros">Ajuda para Acessar o Material</option>
-                      <option value="Dúvida sobre o App Viva+60">Dúvida sobre o Aplicativo Viva+60</option>
+                      <option value="Dúvida sobre o App Web Viva+60">Dúvida sobre o App Web Viva+60</option>
                       <option value="Formas de Pagamento">Formas de Pagamento (PIX / Cartão)</option>
                       <option value="Outro Assunto">Outro Assunto</option>
                     </select>

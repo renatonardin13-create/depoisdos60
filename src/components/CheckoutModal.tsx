@@ -230,7 +230,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
                 <span className="text-emerald-900 whitespace-nowrap font-display text-base font-extrabold">R$ 37,00</span>
               </div>
               <div className="flex items-center justify-between text-xs text-warm-600 border-t border-warm-200/80 pt-2">
-                <span>+ Bônus App Viva+60 (7 dias gratuitos)</span>
+                <span>+ Bônus App Web Viva+60 (7 dias grátis • 1º mês R$ 29,90)</span>
                 <span className="text-emerald-700 font-bold whitespace-nowrap">Incluso Grátis</span>
               </div>
             </div>

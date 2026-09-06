@@ -155,7 +155,7 @@ export const BonusAppSection: React.FC = () => {
           {/* Bonus 3 */}
           <div className="bg-white rounded-3xl p-5 border-2 border-teal-400 shadow-md relative overflow-hidden flex flex-col justify-between hover:shadow-lg transition-all ring-2 ring-teal-500/20 group">
             <div className="absolute top-4 right-4 z-10 bg-teal-700 text-white text-[11px] font-black uppercase px-2.5 py-1 rounded-full shadow-xs">
-              GRÁTIS
+              7 DIAS GRÁTIS
             </div>
 
             <div className="space-y-3">
@@ -163,31 +163,42 @@ export const BonusAppSection: React.FC = () => {
               <div className="h-32 rounded-2xl overflow-hidden relative shadow-inner bg-warm-100">
                 <img 
                   src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=500&q=80" 
-                  alt="Idosa e filha conectadas com afeto e tecnologia intuitiva em luz ambiente serena"
+                  alt="Idosa e filha conectadas com afeto e tecnologia web intuitiva em luz ambiente serena"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex items-end p-2.5">
-                  <span className="text-white text-xs font-bold">Tecnologia Amigável e Acolhedora</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex items-end p-2.5">
+                  <span className="text-white text-xs font-bold flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    100% Web • Direto no Navegador
+                  </span>
                 </div>
               </div>
 
               <div className="space-y-1">
                 <span className="text-[11px] font-extrabold text-teal-800 uppercase tracking-wider block">
-                  BÔNUS #3 • APLICATIVO EXCLUSIVO
+                  BÔNUS #3 • APLICATIVO WEB EXCLUSIVO
                 </span>
                 <h3 className="font-display font-bold text-lg text-warm-950 leading-snug">
-                  7 Dias de Acesso ao App Viva+60 no Celular
+                  7 Dias Grátis no App Web Viva+60
                 </h3>
                 <p className="text-xs sm:text-sm text-warm-600 leading-relaxed">
-                  Lembretes inteligentes sonoros de remédios, controle de água diária e alerta SOS família em um toque.
+                  Acesso web imediato pelo celular ou computador sem instalar nada e sem ocupar memória. Lembretes sonoros de remédios, água diária e SOS família.
                 </p>
               </div>
             </div>
 
-            <div className="pt-4 mt-4 border-t border-warm-100 flex items-baseline justify-between text-xs">
-              <span className="text-warm-400 line-through">De R$ 35,00</span>
-              <span className="text-teal-800 font-extrabold text-sm">7 DIAS GRÁTIS</span>
+            <div className="pt-4 mt-4 border-t border-warm-100 flex items-center justify-between text-xs gap-2">
+              <div className="flex flex-col text-left space-y-0.5">
+                <span className="text-[10px] text-warm-500 uppercase font-bold tracking-wider">Após os 7 dias grátis:</span>
+                <span className="text-xs text-warm-700 leading-snug">
+                  Mensal: <strong className="text-teal-900 font-bold">R$ 29,90</strong> 1º mês (depois R$ 47,90) <br className="hidden sm:inline" />
+                  ou Anual: <strong className="text-teal-900 font-bold">R$ 97,00/ano</strong>
+                </span>
+              </div>
+              <span className="text-teal-800 font-extrabold text-xs sm:text-sm bg-teal-50 px-2.5 py-1.5 rounded-xl border border-teal-200 shadow-2xs whitespace-nowrap shrink-0">
+                7 DIAS GRÁTIS
+              </span>
             </div>
           </div>
 
@@ -278,8 +289,8 @@ export const BonusAppSection: React.FC = () => {
             />
             
             <div className="mt-4 flex items-center justify-center gap-2 text-center">
-              <span className="text-xs font-bold text-teal-900 bg-white/90 backdrop-blur-xs px-3.5 py-1.5 rounded-full border border-teal-200/80 shadow-xs">
-                📱 Interface Intuitiva com Letras Grandes & Alertas Sonoros
+              <span className="text-xs font-bold text-teal-900 bg-white/90 backdrop-blur-xs px-3.5 py-1.5 rounded-full border border-teal-200/80 shadow-xs flex items-center gap-1.5">
+                <span>🌐 Sistema 100% Web • Celular &amp; Computador sem Instalar Nada</span>
               </span>
             </div>
           </div>

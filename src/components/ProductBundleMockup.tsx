@@ -248,7 +248,7 @@ export const ProductBundleMockup: React.FC<ProductBundleMockupProps> = ({ onOpen
             {/* App Screen Header */}
             <div className="space-y-0.5 relative z-10">
               <div className="flex items-center justify-between text-[7px] text-teal-200">
-                <span className="font-bold">App Viva+60</span>
+                <span className="font-bold">App Web Viva+60</span>
                 <span className="bg-emerald-500 text-white px-1 rounded text-[6px]">BÔNUS</span>
               </div>
               <p className="text-[8px] font-black text-amber-300 leading-tight">
