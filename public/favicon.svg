@@ -1,121 +1,226 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
   <defs>
-    <!-- Rich emerald-forest gradient -->
-    <linearGradient id="favBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#064E3B" />
-      <stop offset="50%" stop-color="#047857" />
-      <stop offset="100%" stop-color="#022C22" />
+    <!-- Background Outer Squircle Gradient -->
+    <linearGradient id="bgBase" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F4C3A" />
+      <stop offset="40%" stop-color="#083325" />
+      <stop offset="100%" stop-color="#031A12" />
     </linearGradient>
 
-    <!-- Golden edge glow -->
-    <linearGradient id="favBorder" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FDE68A" />
-      <stop offset="40%" stop-color="#F59E0B" />
-      <stop offset="100%" stop-color="#10B981" />
+    <!-- 3D Bevel Rim Highlight -->
+    <linearGradient id="rimLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A7F3D0" stop-opacity="0.6" />
+      <stop offset="30%" stop-color="#34D399" stop-opacity="0.3" />
+      <stop offset="70%" stop-color="#047857" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#064E3B" stop-opacity="0.6" />
     </linearGradient>
 
-    <!-- Golden sun/sparkle radial glow -->
-    <radialGradient id="sunBurst" cx="85%" cy="18%" r="60%">
-      <stop offset="0%" stop-color="#FDE047" stop-opacity="0.9" />
-      <stop offset="45%" stop-color="#F59E0B" stop-opacity="0.4" />
+    <!-- Golden Sun Gradient -->
+    <radialGradient id="sunCenter" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFBEB" />
+      <stop offset="30%" stop-color="#FDE047" />
+      <stop offset="70%" stop-color="#EAB308" />
+      <stop offset="100%" stop-color="#CA8A04" />
+    </radialGradient>
+
+    <!-- Sun Glow Aura -->
+    <radialGradient id="sunAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FEF08A" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#F59E0B" stop-opacity="0.4" />
       <stop offset="100%" stop-color="#047857" stop-opacity="0" />
     </radialGradient>
 
-    <!-- Drop shadow for maximum contrast and punch -->
-    <filter id="favDropShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.6" />
-    </filter>
-
-    <!-- Leaf gradients -->
-    <linearGradient id="leafLeft" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#15803D" />
-      <stop offset="100%" stop-color="#4ADE80" />
+    <!-- Golden Ray Color -->
+    <linearGradient id="sunRayGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#EAB308" />
+      <stop offset="100%" stop-color="#FEF08A" />
     </linearGradient>
-    <linearGradient id="leafRight" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#16A34A" />
+
+    <!-- Crescent Wreath Leaves Gradients -->
+    <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ADE80" />
+      <stop offset="50%" stop-color="#22C55E" />
+      <stop offset="100%" stop-color="#15803D" />
+    </linearGradient>
+
+    <linearGradient id="leafGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#166534" />
+      <stop offset="60%" stop-color="#22C55E" />
       <stop offset="100%" stop-color="#86EFAC" />
     </linearGradient>
+
+    <!-- 60 Number Gradient -->
+    <linearGradient id="grad60" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FACC15" />
+      <stop offset="40%" stop-color="#A3E635" />
+      <stop offset="100%" stop-color="#22C55E" />
+    </linearGradient>
+
+    <!-- Couple Skin & Hair Gradients -->
+    <linearGradient id="skinMan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FED7AA" />
+      <stop offset="100%" stop-color="#FDBA74" />
+    </linearGradient>
+    <linearGradient id="skinWoman" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFEDD5" />
+      <stop offset="100%" stop-color="#FED7AA" />
+    </linearGradient>
+
+    <!-- Filters for Depth -->
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.65" />
+    </filter>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
   </defs>
 
-  <!-- Modern App Icon Base: High-contrast rounded squircle -->
-  <rect 
-    x="4" 
-    y="4" 
-    width="120" 
-    height="120" 
-    rx="28" 
-    fill="url(#favBg)" 
-    stroke="url(#favBorder)" 
-    stroke-width="5" 
-  />
+  <!-- Base Squircle App Icon Container -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bgBase)" filter="url(#dropShadow)" />
+  <!-- Glossy Bevel Border -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="none" stroke="url(#rimLight)" stroke-width="8" />
 
-  <!-- Sunburst glow at top right -->
-  <rect 
-    x="6" 
-    y="6" 
-    width="116" 
-    height="116" 
-    rx="25" 
-    fill="url(#sunBurst)" 
-    pointer-events="none" 
-  />
+  <!-- Inner Subtle Texture Vignette -->
+  <circle cx="256" cy="180" r="220" fill="url(#sunAura)" opacity="0.45" />
 
-  <!-- Subtle golden sun sparkle in corner -->
-  <g transform="translate(100, 24)" filter="url(#favDropShadow)">
-    <circle cx="0" cy="0" r="6" fill="#FEF08A" />
-    <path d="M 0,-12 L 0,12 M -12,0 L 12,0" stroke="#FDE047" stroke-width="2.5" stroke-linecap="round" />
-    <circle cx="0" cy="0" r="3" fill="#FFFFFF" />
+  <!-- Golden Sun in the Background (Top Center-Right) -->
+  <g transform="translate(290, 160)">
+    <!-- Sun Glow -->
+    <circle cx="0" cy="0" r="86" fill="url(#sunAura)" />
+    <!-- Sun Disk -->
+    <circle cx="0" cy="0" r="62" fill="url(#sunCenter)" filter="url(#dropShadow)" />
+
+    <!-- Radiant Sun Rays -->
+    <!-- Top-Left -->
+    <rect x="-8" y="-105" width="16" height="34" rx="8" fill="url(#sunRayGrad)" transform="rotate(-45)" />
+    <!-- Top -->
+    <rect x="-8" y="-115" width="16" height="38" rx="8" fill="url(#sunRayGrad)" transform="rotate(-15)" />
+    <!-- Top-Right -->
+    <rect x="-8" y="-112" width="16" height="36" rx="8" fill="url(#sunRayGrad)" transform="rotate(20)" />
+    <!-- Right-Up -->
+    <rect x="-8" y="-108" width="16" height="34" rx="8" fill="url(#sunRayGrad)" transform="rotate(55)" />
+    <!-- Right -->
+    <rect x="-8" y="-102" width="16" height="32" rx="8" fill="url(#sunRayGrad)" transform="rotate(85)" />
   </g>
 
-  <!-- Brand Sprouting Leaves on top (Symbol of longevity & prevention) -->
-  <g transform="translate(64, 26) scale(0.95)" filter="url(#favDropShadow)">
-    <!-- Left Leaf -->
-    <path 
-      d="M 0,12 C -15,-6 -30,6 -20,22 C -10,28 0,18 0,12 Z" 
-      fill="url(#leafLeft)" 
-    />
-    <!-- Right Leaf -->
-    <path 
-      d="M 0,12 C 15,-6 30,6 20,22 C 10,28 0,18 0,12 Z" 
-      fill="url(#leafRight)" 
-    />
-    <!-- Center bud / stem -->
-    <circle cx="0" cy="14" r="2.5" fill="#FEF08A" />
+  <!-- Crescent Leaves Framing the Couple (Left to Center-Bottom) -->
+  <!-- Outer Arch Leaf (Left) -->
+  <path 
+    d="M 100,210 C 85,130 160,70 260,65 C 220,95 180,140 170,220 C 160,300 200,340 250,360 C 180,355 110,310 100,210 Z" 
+    fill="url(#leafGrad1)" 
+    filter="url(#dropShadow)"
+  />
+  <!-- Inner Highlight Rib Leaf -->
+  <path 
+    d="M 108,205 C 100,150 160,95 245,75 C 200,115 175,170 168,235 C 160,290 190,335 240,350 C 185,340 120,290 108,205 Z" 
+    fill="#86EFAC" 
+    opacity="0.35"
+  />
+
+  <!-- Couple Silhouette & Portraits (Man on Left, Woman on Right) -->
+  <!-- Man: Smiling older gentleman with white hair & beard, in green shirt -->
+  <g transform="translate(140, 150)" filter="url(#dropShadow)">
+    <!-- Green Shirt Torso -->
+    <path d="M 5,160 C 15,125 50,110 85,115 C 120,110 155,125 165,160 Z" fill="#047857" />
+    <path d="M 65,115 L 85,145 L 105,115 Z" fill="#065F46" /> <!-- Collar V -->
+    <!-- Neck -->
+    <rect x="68" y="80" width="34" height="40" rx="8" fill="url(#skinMan)" />
+    <!-- Head & Ear -->
+    <circle cx="85" cy="72" r="38" fill="url(#skinMan)" />
+    <circle cx="50" cy="74" r="9" fill="url(#skinMan)" /> <!-- Ear -->
+    <!-- White Beard & Mustache -->
+    <path d="M 55,75 C 55,108 72,118 85,118 C 98,118 115,108 115,75 C 105,80 95,82 85,82 C 75,82 65,80 55,75 Z" fill="#F3F4F6" />
+    <path d="M 68,88 C 76,84 94,84 102,88 C 96,96 74,96 68,88 Z" fill="#E5E7EB" /> <!-- Mustache -->
+    <!-- Smile line -->
+    <path d="M 76,92 Q 85,99 94,92" stroke="#9A3412" stroke-width="2.5" fill="none" stroke-linecap="round" />
+    <!-- White Hair -->
+    <path d="M 52,65 C 48,32 70,22 88,24 C 106,26 122,36 120,62 C 114,46 98,40 85,42 C 70,44 58,52 52,65 Z" fill="#FFFFFF" />
+    <path d="M 46,65 C 44,48 54,38 68,34 C 58,40 52,50 50,62 Z" fill="#E5E7EB" />
   </g>
 
-  <!-- Main Punchy "60+" Typography - Ultra bold, instant recognition in tiny tab bar -->
-  <g filter="url(#favDropShadow)">
-    <!-- Number 60 -->
-    <text 
-      x="54" 
-      y="90" 
-      font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Outfit', 'Plus Jakarta Sans', sans-serif" 
-      font-weight="900" 
-      font-size="62" 
-      letter-spacing="-3" 
-      text-anchor="middle"
-    >
-      <!-- "6" in Brilliant Pure White -->
-      <tspan fill="#FFFFFF">6</tspan>
-      <!-- "0" in Vibrant Golden Amber -->
-      <tspan fill="#FBBF24" dx="-2">0</tspan>
+  <!-- Woman: Smiling older lady with white hair & pearl earring, in cream blouse -->
+  <g transform="translate(225, 175)" filter="url(#dropShadow)">
+    <!-- Cream Blouse -->
+    <path d="M 0,140 C 10,110 40,98 75,100 C 110,98 140,110 150,140 Z" fill="#FFFBEB" />
+    <!-- Neck -->
+    <rect x="58" y="70" width="32" height="36" rx="6" fill="url(#skinWoman)" />
+    <!-- Head & Ear -->
+    <circle cx="74" cy="62" r="34" fill="url(#skinWoman)" />
+    <circle cx="43" cy="65" r="7" fill="url(#skinWoman)" /> <!-- Ear -->
+    <circle cx="43" cy="68" r="3.5" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1" /> <!-- Pearl Earring -->
+    <!-- Happy Smile Line -->
+    <path d="M 66,75 Q 76,84 86,75" stroke="#9A3412" stroke-width="2.5" fill="none" stroke-linecap="round" />
+    <!-- Gentle Eye Smile -->
+    <path d="M 68,56 Q 74,52 80,56" stroke="#7C2D12" stroke-width="2.5" fill="none" stroke-linecap="round" />
+    <!-- White Hair Waves & Bun -->
+    <path d="M 44,58 C 36,28 62,18 78,20 C 96,22 110,34 108,60 C 104,45 92,38 80,39 C 66,40 54,48 44,58 Z" fill="#F9FAFB" />
+    <circle cx="42" cy="52" r="14" fill="#E5E7EB" /> <!-- Hair Bun detail -->
+    <circle cx="41" cy="50" r="12" fill="#FFFFFF" />
+  </g>
+
+  <!-- Foreground Lush Green Shield / Crescent Leaves (Hugging the portraits) -->
+  <g filter="url(#dropShadow)">
+    <!-- Big Front Leaf (Right) -->
+    <path 
+      d="M 230,360 C 260,340 330,335 380,270 C 375,325 330,365 240,375 Z" 
+      fill="url(#leafGrad2)" 
+    />
+    <!-- Mid Leaf with Glow -->
+    <path 
+      d="M 180,365 C 220,335 300,310 370,265 C 330,320 280,365 180,365 Z" 
+      fill="url(#leafGrad1)" 
+    />
+    <!-- Leaf Center Vein -->
+    <path d="M 200,360 Q 280,325 360,272" stroke="#A7F3D0" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.7" />
+  </g>
+
+  <!-- BRAND TYPOGRAPHY & EMBLEM (Lower Third) -->
+  <g transform="translate(256, 395)" text-anchor="middle" filter="url(#dropShadow)">
+    
+    <!-- Sprouting Twin Leaves above 'Depois' -->
+    <g transform="translate(-50, -42) scale(0.9)">
+      <path d="M 0,10 C -12,-4 -22,4 -15,16 C -8,22 0,14 0,10 Z" fill="#4ADE80" />
+      <path d="M 0,10 C 12,-4 22,4 15,16 C 8,22 0,14 0,10 Z" fill="#86EFAC" />
+    </g>
+
+    <!-- Main Title: "Depois dos 60" -->
+    <text y="0" font-family="system-ui, -apple-system, 'Outfit', 'Plus Jakarta Sans', sans-serif" font-weight="900">
+      <!-- "Depois dos" in crisp, clean white -->
+      <tspan x="-52" font-size="52" fill="#FFFFFF" letter-spacing="-1">Depois dos</tspan>
+      <!-- "60" in bold radiant lime-yellow gradient -->
+      <tspan x="122" font-size="68" fill="url(#grad60)" letter-spacing="-2" font-weight="900">60</tspan>
     </text>
 
-    <!-- Plus Symbol "+" in Vibrant Lime/Emerald -->
+    <!-- Subtitle: "Guia Prático de Prevenção & Autonomia" -->
     <text 
-      x="102" 
-      y="66" 
+      y="30" 
       font-family="system-ui, -apple-system, sans-serif" 
-      font-weight="900" 
-      font-size="34" 
-      fill="#4ADE80" 
-      text-anchor="middle"
-    >+</text>
-  </g>
+      font-size="20" 
+      font-weight="700" 
+      fill="#FFFFFF" 
+      letter-spacing="0.5"
+    >
+      Guia Prático de Prevenção &amp; Autonomia
+    </text>
 
-  <!-- Bottom Mini Gold Banner / Safety Dot: "SAÚDE" or subtle golden line -->
-  <g transform="translate(64, 108)" filter="url(#favDropShadow)">
-    <rect x="-34" y="0" width="68" height="6" rx="3" fill="#F59E0B" opacity="0.9" />
-    <circle cx="0" cy="3" r="2" fill="#FFFFFF" />
+    <!-- Golden Accent Rule: "— MAIS SAÚDE • MAIS VIDA • SEM LIMITES —" -->
+    <g transform="translate(0, 52)">
+      <!-- Left Golden Line -->
+      <line x1="-200" y1="-4" x2="-145" y2="-4" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" />
+      <!-- Golden Tagline Text -->
+      <text 
+        y="0" 
+        font-family="system-ui, -apple-system, sans-serif" 
+        font-size="12" 
+        font-weight="800" 
+        fill="#FBBF24" 
+        letter-spacing="1.8"
+      >
+        MAIS SAÚDE  •  MAIS VIDA  •  SEM LIMITES
+      </text>
+      <!-- Right Golden Line -->
+      <line x1="145" y1="-4" x2="200" y2="-4" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" />
+    </g>
   </g>
 </svg>
