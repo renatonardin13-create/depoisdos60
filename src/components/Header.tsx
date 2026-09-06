@@ -98,21 +98,21 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCheckout, fontSize, setFon
       <header
         className={`sticky top-0 z-40 transition-all duration-200 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-warm-200/90 py-2 sm:py-2.5'
-            : 'bg-white border-b border-warm-200/80 py-2.5 sm:py-3.5'
+            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-warm-200/90 py-1.5 sm:py-2'
+            : 'bg-white border-b border-warm-200/80 py-2 sm:py-2.5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-3 md:gap-5 min-h-[80px] sm:min-h-[86px]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-3 md:gap-5 min-h-[64px] sm:min-h-[70px]">
           
-          {/* Brand Logo - clean prominent wordmark with full visibility */}
+          {/* Brand Logo - clean prominent wordmark with balanced proportion */}
           <div id="header-logo-container" className="flex items-center shrink-0">
-            <a href="#" className="flex items-center group py-1" aria-label="Depois dos 60 — Início">
+            <a href="#" className="flex items-center group py-0.5" aria-label="Depois dos 60 — Início">
               <img 
                 src={logoImage} 
                 alt="Depois dos 60 — Guia Prático de Prevenção & Autonomia" 
-                className="w-[190px] xs:w-[220px] sm:w-[240px] md:w-[260px] h-auto cursor-pointer transition-transform duration-150 group-hover:scale-[1.01]"
+                className="w-[160px] xs:w-[175px] sm:w-[190px] md:w-[205px] h-auto cursor-pointer transition-transform duration-150 group-hover:scale-[1.01]"
                 style={{
-                  width: '260px',
+                  width: '205px',
                   maxWidth: '100%',
                   height: 'auto',
                   objectFit: 'contain'
