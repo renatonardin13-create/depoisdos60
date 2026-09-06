@@ -11,7 +11,14 @@ import {
   Info, 
   Sparkles, 
   ChevronRight,
-  ShieldCheck
+  ShieldCheck,
+  Home,
+  ShieldAlert,
+  Settings,
+  Printer,
+  PenLine,
+  Siren,
+  Droplet
 } from 'lucide-react';
 import { Viva60AppGraphic } from './illustrations/Viva60AppGraphic';
 
@@ -71,84 +78,248 @@ export const BonusAppSection: React.FC = () => {
         {/* 3 Bonus Showcase Cards (with authentic soft-lighting imagery) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14 text-left">
           
-          {/* Bonus 1 */}
-          <div className="bg-white rounded-3xl p-5 border-2 border-emerald-300/80 shadow-sm relative overflow-hidden flex flex-col justify-between hover:shadow-md transition-all group">
-            <div className="absolute top-4 right-4 z-10 bg-emerald-600 text-white text-[11px] font-black uppercase px-2.5 py-1 rounded-full shadow-xs">
-              GRÁTIS
-            </div>
+          {/* Bonus 1 - High Converting Visual Showcase Card (Image 1) */}
+          <div className="bg-white rounded-3xl p-4 sm:p-5 border-[3px] border-emerald-400 shadow-[0_0_24px_rgba(16,185,129,0.3)] relative overflow-hidden flex flex-col justify-between hover:shadow-[0_0_32px_rgba(16,185,129,0.45)] transition-all group">
             
-            <div className="space-y-3">
-              {/* Soft-lighting Authentic Visual */}
-              <div className="h-32 rounded-2xl overflow-hidden relative shadow-inner bg-warm-100">
+            <div className="space-y-3.5">
+              {/* Photo Banner with Badges */}
+              <div className="h-44 sm:h-48 rounded-2xl overflow-hidden relative shadow-md bg-warm-100">
                 <img 
-                  src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" 
+                  src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80" 
                   alt="Banheiro e ambientes residenciais adaptados contra quedas com piso seguro e boa iluminação"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent flex items-end p-2.5">
-                  <div className="flex items-center gap-1.5 text-white text-xs font-bold">
+
+                {/* Top-Left Pill: BÔNUS #1 */}
+                <div className="absolute top-2.5 left-2.5 z-10 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-800 text-white font-extrabold text-xs sm:text-[13px] px-3.5 py-1.5 rounded-full border border-emerald-400/60 shadow-lg flex items-center gap-1.5">
+                  <Gift className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
+                  <span>BÔNUS #1</span>
+                </div>
+
+                {/* Top-Right Pill: GRÁTIS */}
+                <div className="absolute top-2.5 right-2.5 z-10 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white text-[11px] sm:text-xs font-black uppercase px-3.5 py-1 rounded-full shadow-lg border border-emerald-300/40 tracking-wider">
+                  GRÁTIS
+                </div>
+
+                {/* Bottom Overlay with Room Tag and Handwritten Quote */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex items-end justify-between p-2.5 sm:p-3">
+                  <div className="flex items-center gap-1.5 bg-emerald-950/85 backdrop-blur-xs text-white text-[11px] sm:text-xs font-bold px-2.5 py-1 rounded-lg border border-emerald-500/40 shadow-xs">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                     <span>Banheiros & Cômodos Sem Riscos</span>
+                  </div>
+
+                  <span className="text-white font-serif italic text-xs sm:text-[13px] font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-right leading-tight hidden xs:block">
+                    Mais segurança<br />no seu dia a dia!
+                  </span>
+                </div>
+              </div>
+
+              {/* Title & Category with vertical accent bar */}
+              <div className="space-y-1.5">
+                <span className="text-[11px] sm:text-xs font-extrabold text-emerald-700 uppercase tracking-wider block">
+                  BÔNUS #1 • GUIA VISUAL ILUSTRADO
+                </span>
+                
+                <div className="flex items-start gap-2.5">
+                  <div className="w-1.5 h-11 bg-emerald-500 rounded-full shrink-0 mt-1"></div>
+                  <h3 className="font-display font-extrabold text-base sm:text-lg text-stone-900 leading-snug">
+                    Checklist Ilustrado de Casa Segura &amp; Anti-Quedas
+                  </h3>
+                </div>
+
+                <p className="text-xs sm:text-[13px] text-stone-600 leading-relaxed pl-4">
+                  Inspeção cômodo por cômodo para blindar banheiros, corredores e quartos contra acidentes sem reformas caras.
+                </p>
+              </div>
+
+              {/* 4 Feature Badges (matching Image 1) */}
+              <div className="grid grid-cols-2 gap-1.5 sm:gap-2 pt-1">
+                <div className="bg-emerald-50/70 border border-emerald-100/90 rounded-xl p-2 flex flex-col items-center text-center gap-1">
+                  <div className="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-xs">
+                    <Home className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-stone-800 leading-tight">
+                    Inspeção cômodo a cômodo
+                  </span>
+                </div>
+
+                <div className="bg-emerald-50/70 border border-emerald-100/90 rounded-xl p-2 flex flex-col items-center text-center gap-1">
+                  <div className="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-xs">
+                    <ShieldCheck className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-stone-800 leading-tight">
+                    Dicas práticas e fáceis de aplicar
+                  </span>
+                </div>
+
+                <div className="bg-emerald-50/70 border border-emerald-100/90 rounded-xl p-2 flex flex-col items-center text-center gap-1">
+                  <div className="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-xs">
+                    <ShieldAlert className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-stone-800 leading-tight">
+                    Prevenção de acidentes
+                  </span>
+                </div>
+
+                <div className="bg-emerald-50/70 border border-emerald-100/90 rounded-xl p-2 flex flex-col items-center text-center gap-1">
+                  <div className="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-xs">
+                    <Settings className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-stone-800 leading-tight">
+                    Soluções simples e econômicas
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Bar: Strikethrough Price in Red + Glowing HOJE: GRÁTIS Button */}
+            <div className="pt-4 mt-3 border-t border-emerald-100/80 flex items-center justify-between gap-2">
+              <div>
+                <span className="text-sm sm:text-base text-stone-400 font-semibold relative inline-block">
+                  De R$ 47,00
+                  <span className="absolute left-0 right-0 top-1/2 h-[2px] bg-red-500 transform -rotate-6"></span>
+                </span>
+              </div>
+
+              <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-emerald-800 via-emerald-700 to-emerald-800 text-white font-black text-xs sm:text-sm px-3.5 py-2 rounded-xl shadow-[0_0_18px_rgba(16,185,129,0.5)] border border-emerald-400/80 tracking-wide">
+                <Gift className="w-4 h-4 text-amber-300 fill-amber-300 shrink-0" />
+                <span>HOJE: <strong className="text-amber-300 font-black">GRÁTIS</strong></span>
+              </div>
+            </div>
+          </div>
+
+          {/* Bonus 2 - High Converting Visual Showcase Card (Image 1) */}
+          <div className="bg-white rounded-3xl p-4 sm:p-5 border-[3px] border-emerald-400 shadow-[0_0_24px_rgba(16,185,129,0.3)] relative overflow-hidden flex flex-col justify-between hover:shadow-[0_0_32px_rgba(16,185,129,0.45)] transition-all group">
+            
+            <div className="space-y-3.5">
+              {/* Photo Banner with Badges */}
+              <div className="h-44 sm:h-48 rounded-2xl overflow-hidden relative shadow-md bg-stone-100">
+                <img 
+                  src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=700&q=80" 
+                  alt="Ficha médica de emergência pronta para imprimir e preencher na prancheta com caneta e computador"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+
+                {/* Styled Clipboard Medical Sheet Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/35 to-black/10 flex items-center justify-start p-3 pointer-events-none">
+                  <div className="w-36 bg-white/95 backdrop-blur-xs rounded-lg p-2 shadow-xl border border-stone-200 transform -rotate-3 transition-transform group-hover:rotate-0 duration-300">
+                    <div className="flex items-center gap-1.5 border-b border-stone-200 pb-1 mb-1.5">
+                      <div className="w-4 h-4 rounded-full bg-red-600 text-white font-black text-[10px] flex items-center justify-center leading-none">
+                        +
+                      </div>
+                      <span className="text-[7.5px] font-black tracking-tight text-stone-900 uppercase">
+                        Ficha Médica Emergência
+                      </span>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="h-1.5 bg-stone-200 rounded w-full"></div>
+                      <div className="h-1.5 bg-stone-200 rounded w-4/5"></div>
+                      <div className="h-1.5 bg-stone-200 rounded w-5/6"></div>
+                      <div className="h-1.5 bg-red-100 rounded w-3/4"></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Top-Left Pill: BÔNUS #2 */}
+                <div className="absolute top-2.5 left-2.5 z-10 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-800 text-white font-extrabold text-xs sm:text-[13px] px-3.5 py-1.5 rounded-full border border-emerald-400/60 shadow-lg flex items-center gap-1.5">
+                  <Gift className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
+                  <span>BÔNUS #2</span>
+                </div>
+
+                {/* Top-Right Pill: GRÁTIS */}
+                <div className="absolute top-2.5 right-2.5 z-10 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white text-[11px] sm:text-xs font-black uppercase px-3.5 py-1 rounded-full shadow-lg border border-emerald-300/40 tracking-wider">
+                  GRÁTIS
+                </div>
+
+                {/* Bottom Overlay with Room Tag and Handwritten Quote */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex items-end justify-between p-2.5 sm:p-3 pointer-events-none">
+                  <div className="flex items-center gap-1.5 bg-emerald-950/85 backdrop-blur-xs text-white text-[11px] sm:text-xs font-bold px-2.5 py-1 rounded-lg border border-emerald-500/40 shadow-xs">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span>Pronto para Imprimir e Fixar</span>
+                  </div>
+
+                  <div className="text-right leading-tight hidden xs:block">
+                    <span className="text-white font-serif italic text-xs sm:text-[13px] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] block text-emerald-100">
+                      Imprima, preencha<br />e deixe sempre à mão!
+                    </span>
+                    <div className="h-0.5 w-16 bg-amber-400/90 rounded-full ml-auto mt-0.5 shadow-sm"></div>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-1">
-                <span className="text-[11px] font-extrabold text-emerald-800 uppercase tracking-wider block">
-                  BÔNUS #1 • GUIA VISUAL ILUSTRADO
-                </span>
-                <h3 className="font-display font-bold text-lg text-warm-950 leading-snug">
-                  Checklist Ilustrado de Casa Segura & Anti-Quedas
-                </h3>
-                <p className="text-xs sm:text-sm text-warm-600 leading-relaxed">
-                  Inspeção cômodo por cômodo para blindar banheiros, corredores e quartos contra acidentes sem reformas caras.
-                </p>
-              </div>
-            </div>
-
-            <div className="pt-4 mt-4 border-t border-warm-100 flex items-baseline justify-between text-xs">
-              <span className="text-warm-400 line-through">De R$ 47,00</span>
-              <span className="text-emerald-700 font-extrabold text-sm">HOJE: R$ 0,00</span>
-            </div>
-          </div>
-
-          {/* Bonus 2 */}
-          <div className="bg-white rounded-3xl p-5 border-2 border-emerald-300/80 shadow-sm relative overflow-hidden flex flex-col justify-between hover:shadow-md transition-all group">
-            <div className="absolute top-4 right-4 z-10 bg-emerald-600 text-white text-[11px] font-black uppercase px-2.5 py-1 rounded-full shadow-xs">
-              GRÁTIS
-            </div>
-
-            <div className="space-y-3">
-              {/* Soft-lighting Authentic Visual */}
-              <div className="h-32 rounded-2xl overflow-hidden relative shadow-inner bg-warm-100">
-                <img 
-                  src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=500&q=80" 
-                  alt="Ficha de rotina, contatos e informações médicas organizada"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex items-end p-2.5">
-                  <span className="text-white text-xs font-bold">Pronto para Imprimir e Fixar</span>
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <span className="text-[11px] font-extrabold text-emerald-800 uppercase tracking-wider block">
+              {/* Title & Category with vertical accent bar */}
+              <div className="space-y-1.5">
+                <span className="text-[11px] sm:text-xs font-extrabold text-emerald-700 uppercase tracking-wider block">
                   BÔNUS #2 • MODELO PRONTO
                 </span>
-                <h3 className="font-display font-bold text-lg text-warm-950 leading-snug">
-                  Ficha Médica de Emergência para Geladeira
-                </h3>
-                <p className="text-xs sm:text-sm text-warm-600 leading-relaxed">
+                
+                <div className="flex items-start gap-2.5">
+                  <div className="w-1.5 h-11 bg-emerald-500 rounded-full shrink-0 mt-1"></div>
+                  <h3 className="font-display font-extrabold text-base sm:text-lg text-stone-900 leading-snug">
+                    Ficha Médica de Emergência para Geladeira
+                  </h3>
+                </div>
+
+                <p className="text-xs sm:text-[13px] text-stone-600 leading-relaxed pl-4">
                   Ficha rápida pronta para imprimir e fixar na porta, com contatos de emergência, remédios em uso e tipo sanguíneo.
                 </p>
               </div>
+
+              {/* 4 Feature Badges (matching Image 1) */}
+              <div className="grid grid-cols-2 gap-1.5 sm:gap-2 pt-1">
+                <div className="bg-emerald-50/70 border border-emerald-100/90 rounded-xl p-2 flex flex-col items-center text-center gap-1">
+                  <div className="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-xs">
+                    <Printer className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-stone-800 leading-tight">
+                    Modelo pronto para imprimir
+                  </span>
+                </div>
+
+                <div className="bg-emerald-50/70 border border-emerald-100/90 rounded-xl p-2 flex flex-col items-center text-center gap-1">
+                  <div className="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-xs">
+                    <PenLine className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-stone-800 leading-tight">
+                    Fácil de preencher
+                  </span>
+                </div>
+
+                <div className="bg-emerald-50/70 border border-emerald-100/90 rounded-xl p-2 flex flex-col items-center text-center gap-1">
+                  <div className="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-xs">
+                    <Siren className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-stone-800 leading-tight">
+                    Contatos de emergência
+                  </span>
+                </div>
+
+                <div className="bg-emerald-50/70 border border-emerald-100/90 rounded-xl p-2 flex flex-col items-center text-center gap-1">
+                  <div className="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-xs">
+                    <Droplet className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-stone-800 leading-tight">
+                    Tipo sanguíneo e medicamentos
+                  </span>
+                </div>
+              </div>
             </div>
 
-            <div className="pt-4 mt-4 border-t border-warm-100 flex items-baseline justify-between text-xs">
-              <span className="text-warm-400 line-through">De R$ 29,90</span>
-              <span className="text-emerald-700 font-extrabold text-sm">HOJE: R$ 0,00</span>
+            {/* Bottom Bar: Strikethrough Price in Red + Glowing HOJE: GRÁTIS Button */}
+            <div className="pt-4 mt-3 border-t border-emerald-100/80 flex items-center justify-between gap-2">
+              <div>
+                <span className="text-sm sm:text-base text-stone-400 font-semibold relative inline-block">
+                  De R$ 29,90
+                  <span className="absolute left-0 right-0 top-1/2 h-[2px] bg-red-500 transform -rotate-6"></span>
+                </span>
+              </div>
+
+              <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-emerald-800 via-emerald-700 to-emerald-800 text-white font-black text-xs sm:text-sm px-3.5 py-2 rounded-xl shadow-[0_0_18px_rgba(16,185,129,0.5)] border border-emerald-400/80 tracking-wide">
+                <Gift className="w-4 h-4 text-amber-300 fill-amber-300 shrink-0" />
+                <span>HOJE: <strong className="text-amber-300 font-black">GRÁTIS</strong></span>
+              </div>
             </div>
           </div>
 
