@@ -27,59 +27,41 @@ export const ProductBundleMockup: React.FC<ProductBundleMockupProps> = ({
   onOpenCheckout,
   className = ''
 }) => {
-  const [customImage, setCustomImage] = useState<string | null>(null);
+  const [heroImage, setHeroImage] = useState<string | null>(null);
 
-  // Load custom image from localStorage if present
+  // Load and permanently sync hero bundle image without any user alteration options
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem('hero_box_mockup_image_v2');
-      if (saved) {
-        setCustomImage(saved);
-        return;
-      }
-    } catch {
-      // ignore
-    }
-
-    // Try probe /hero-bundle.png or /hero-box.png
+    // 1. Check if static /hero-bundle.png already exists
     const probe = new Image();
-    probe.onload = () => setCustomImage('/hero-bundle.png');
-    probe.src = '/hero-bundle.png';
-  }, []);
-
-  const handleFile = (file: File) => {
-    if (!file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const result = e.target?.result as string;
-      if (result) {
-        setCustomImage(result);
-        try {
-          localStorage.setItem('hero_box_mockup_image_v2', result);
-        } catch {
-          // ignore
+    probe.onload = () => {
+      setHeroImage('/hero-bundle.png');
+    };
+    probe.onerror = () => {
+      // 2. If not yet written to /public/hero-bundle.png, retrieve from localStorage and save it to server
+      try {
+        const saved = localStorage.getItem('hero_box_mockup_image_v2');
+        if (saved) {
+          setHeroImage(saved);
+          fetch('/api/save-hero-image', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ dataUrl: saved })
+          }).then((res) => {
+            if (res.ok) {
+              setHeroImage('/hero-bundle.png');
+            }
+          }).catch(() => {});
         }
+      } catch {
+        // ignore
       }
     };
-    reader.readAsDataURL(file);
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleFile(e.dataTransfer.files[0]);
-    }
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-  };
+    probe.src = '/hero-bundle.png';
+  }, []);
 
   return (
     <div 
       className={`relative w-full max-w-[480px] sm:max-w-[500px] mx-auto select-none flex flex-col items-center justify-center ${className}`}
-      onDrop={handleDrop}
-      onDragOver={handleDragOver}
     >
       {/* Atmospheric green & amber glow */}
       <div 
@@ -88,12 +70,12 @@ export const ProductBundleMockup: React.FC<ProductBundleMockupProps> = ({
       />
 
       {/* ========================================================================= */}
-      {/* CASE A: USER UPLOADED ORIGINAL PNG (ChatGPT Image 14_01_37.png)          */}
+      {/* PERMANENT MOCKUP PRESENTATION (NO ALTERATION CONTROLS ON PAGE)             */}
       {/* ========================================================================= */}
-      {customImage ? (
+      {heroImage ? (
         <div className="relative group/customHero flex flex-col items-center z-10 w-full">
           <img 
-            src={customImage} 
+            src={heroImage} 
             alt="Depois dos 60: 50 Cuidados Que Toda Idosa e Sua Família Precisam Conhecer! - Box 3D com Celular" 
             className="w-full max-w-[440px] sm:max-w-[470px] h-auto object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.65)] cursor-pointer transition-transform duration-300 group-hover/customHero:scale-[1.015]"
             onClick={onOpenCheckout}

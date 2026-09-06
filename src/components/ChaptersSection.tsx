@@ -81,7 +81,7 @@ export const ChaptersSection: React.FC<ChaptersSectionProps> = ({ onOpenCheckout
               ✓ 50 Cuidados Práticos
             </span>
             <span className="bg-warm-100 border border-warm-200 px-3 py-1 rounded-full text-warm-800 whitespace-nowrap">
-              ✓ 128 Páginas de Conteúdo
+              ✓ 50 Páginas de Conteúdo
             </span>
             <span className="bg-warm-100 border border-warm-200 px-3 py-1 rounded-full text-warm-800 whitespace-nowrap">
               ✓ Letra Confortável para Leitura
@@ -202,7 +202,7 @@ export const ChaptersSection: React.FC<ChaptersSectionProps> = ({ onOpenCheckout
               <span className="text-xs uppercase font-bold tracking-wider text-brand-300 bg-brand-900 px-2.5 py-0.5 rounded-full whitespace-nowrap">
                 Acesso Vitalício
               </span>
-              <span className="text-xs text-brand-200">128 páginas • Acesso na Área de Membros</span>
+              <span className="text-xs text-brand-200">50 páginas • Acesso na Área de Membros</span>
             </div>
             <h3 className="font-display font-bold text-xl sm:text-2xl text-white">
               Todos os 8 capítulos disponíveis na sua Área de Membros

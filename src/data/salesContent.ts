@@ -5,7 +5,7 @@ export const salesContent = {
     title: 'Depois dos 60: 50 Cuidados que Todo Idoso e Sua Família Precisam Conhecer',
     subtitle: 'Um guia prático para melhorar a rotina, a segurança, a autonomia e a qualidade de vida na terceira idade',
     format: 'Ebook Digital (Acesso Online na Área de Membros)',
-    pagesCount: 128,
+    pagesCount: 50,
     totalTips: 50,
     chaptersCount: 8,
     price: 37.00,

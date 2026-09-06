@@ -22,7 +22,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onOpenCheckout
   const { product } = salesContent;
 
   const includedItems = [
-    'Ebook digital completo “Depois dos 60” (128 páginas na Área de Membros)',
+    'Ebook digital completo “Depois dos 60” (50 páginas na Área de Membros)',
     '50 cuidados práticos divididos nos 8 capítulos essenciais de prevenção',
     'Checklists prontos de segurança em casa e organização de medicamentos',
     'Modelo de ficha de emergência médica para fixar na geladeira',

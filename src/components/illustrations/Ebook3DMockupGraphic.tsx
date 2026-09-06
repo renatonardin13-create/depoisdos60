@@ -538,7 +538,7 @@ export const Ebook3DMockupGraphic: React.FC<Ebook3DMockupGraphicProps> = ({
                 fontFamily="'Plus Jakarta Sans', sans-serif"
                 fontWeight="700"
               >
-                128 Páginas • 8 Capítulos • Letras Grandes
+                50 Páginas • 8 Capítulos • Letras Grandes
               </text>
               <text
                 x="268"
@@ -626,7 +626,7 @@ export const Ebook3DMockupGraphic: React.FC<Ebook3DMockupGraphicProps> = ({
               Prevenção Ativa • Autonomia • Apoio Familiar
             </p>
             <div className="flex items-center justify-between text-[10px] text-warm-200 px-2 font-semibold">
-              <span>128 Páginas • 8 Capítulos</span>
+              <span>50 Páginas • 8 Capítulos</span>
               <span className="text-amber-300 font-bold">100% Legível</span>
             </div>
           </div>
@@ -709,7 +709,7 @@ export const Ebook3DMockupGraphic: React.FC<Ebook3DMockupGraphicProps> = ({
       <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-center">
         <span className="text-[11px] font-bold text-amber-300 bg-black/60 px-3 py-1 rounded-full border border-amber-400/40 shadow-xs flex items-center gap-1.5">
           <Star className="w-3 h-3 fill-amber-400" />
-          <span>128 Páginas em Alta Resolução • Diagramação para Leitura Fácil</span>
+          <span>50 Páginas em Alta Resolução • Diagramação para Leitura Fácil</span>
         </span>
       </div>
     </div>

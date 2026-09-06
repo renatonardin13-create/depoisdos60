@@ -57,6 +57,34 @@ function aistudioMediaPlugin(): Plugin {
             // Fall through if URI decoding or file access fails
           }
         }
+
+        // Endpoint to permanently save hero-bundle image from client
+        if (req.url === '/api/save-hero-image' && req.method === 'POST') {
+          let body = '';
+          req.on('data', (chunk) => {
+            body += chunk;
+          });
+          req.on('end', () => {
+            try {
+              const { dataUrl } = JSON.parse(body);
+              if (dataUrl && typeof dataUrl === 'string' && dataUrl.startsWith('data:image/')) {
+                const base64Data = dataUrl.replace(/^data:image\/\w+;base64,/, '');
+                const buffer = Buffer.from(base64Data, 'base64');
+                const dest = path.resolve(__dirname, 'public', 'hero-bundle.png');
+                fs.writeFileSync(dest, buffer);
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: true, path: '/hero-bundle.png' }));
+                return;
+              }
+            } catch (err) {
+              console.error('Failed to save hero image:', err);
+            }
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ success: false }));
+          });
+          return;
+        }
+
         next();
       });
     },
